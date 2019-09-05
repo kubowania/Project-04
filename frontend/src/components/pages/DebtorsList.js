@@ -25,10 +25,10 @@ class DebtorsList extends React.Component {
           <div className="rows is-multiline">
             {this.state.counterparties.map(counterparty =>
               <div
-                key={counterparty._id}
+                key={counterparty.id}
                 className="row is-mobile"
               >
-                <Link to={`/transactions/${counterparty._id}`}>
+                <Link to={`/counterparties/${counterparty.id}`}>
                   <DebtorCard
                     companyname={counterparty.companyname}
                     companyregistration={counterparty.companyregistration}

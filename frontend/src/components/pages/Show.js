@@ -5,6 +5,8 @@ import PartialLoadingIndicatorStory from '../transactions/PartialLoadingIndicato
 import { Link } from 'react-router-dom'
 import 'bulma'
 
+import helpers from '../../lib/helpers'
+
 
 class CounterpartyShow extends React.Component {
   constructor() {
@@ -19,6 +21,7 @@ class CounterpartyShow extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
     this.handleDeleteCounterparty = this.handleDeleteCounterparty.bind(this)
+    // this.getCounterpartyTotalAmount = this.getCounterpartyTotalAmount.bind(this)
   }
 
   componentDidMount() {
@@ -53,7 +56,15 @@ class CounterpartyShow extends React.Component {
       .then(() => this.props.history.push('/counterparties/'))
   }
 
+  // getCounterpartyTotalAmount() {
+  //   if(!this.state.counterparty) return 0
+  //   return this.normalisePrice(this.state.counterparty.transactions[0].amount.reduce((total, transaction) => total + transaction.amount, 0))
+  // }
+
   render() {
+    console.log(this.state)
+    console.log(this.state.counterparty[0].transactions)
+    if(!this.state.counterparty) return null
     return(
       <section className="section">
         <section className="columns is-desktop counterpartydetails is-dark">
@@ -62,14 +73,15 @@ class CounterpartyShow extends React.Component {
           </div>
           <div className="column is-two-thirds companyinfo">
             <div className="titleblock">
-              <h1 className="title is-3">CounterParty Name</h1>
+              <h1 className="title is-3">{this.state.counterparty.companyname}</h1>
               <div>
                 <div className="button editshow">Edit</div>
                 <div className="button">Delete</div>
               </div>
             </div>
             <div className="counterpartyinfo">
-              <h2 className="showinfo">Amount total</h2>
+              <h2 className="showinfo">
+              </h2>
               <h2 className="showinfo">Company Reg code</h2>
               <h2 className="showinfo">sic codes</h2>
             </div>

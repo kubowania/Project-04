@@ -5,6 +5,8 @@ import axios from 'axios'
 import _ from 'lodash'
 import {Link} from 'react-router-dom'
 
+import helpers from '../../lib/helpers'
+
 
 class Home extends React.Component {
   constructor() {
@@ -18,8 +20,7 @@ class Home extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.filterTransactions = this.filterTransactions.bind(this)
     this.storeValue = this.storeValue.bind(this)
-    this.normalisePrice = this.normalisePrice.bind(this)
-    this.getGlobalTotalAmount = this.getGlobalTotalAmount.bind(this)
+
   }
 
 
@@ -42,15 +43,7 @@ class Home extends React.Component {
     this.setState({ sortTerm: this.state.heldWord })
   }
 
-  normalisePrice(amount) {
-    const amountResult = parseFloat(amount).toFixed(2)
-    return amountResult
-  }
 
-  getGlobalTotalAmount() {
-    if(!this.state.transactions) return 0
-    return this.normalisePrice(this.state.transactions.reduce((total, transaction) => total + transaction.amount, 0))
-  }
 
   filterTransactions() {
     const re = new RegExp(this.state.searchTerm, 'i')
@@ -63,7 +56,6 @@ class Home extends React.Component {
 
   render() {
     console.log(this.state)
-    console.log(this.getGlobalTotalAmount() )
     if(!this.state) return null
     return (
       <div>
@@ -76,7 +68,7 @@ class Home extends React.Component {
             <div className="column is-two-thirds companyinfo">
               <div className="titleblock">
                 <h1 className="title is-3">User Company Name</h1>
-                <h2>{this.getGlobalTotalAmount()}</h2>
+                <h2>{helpers.getGlobalTotalAmount(this.state.transactions)}</h2>
               </div>
             </div>
           </section>
@@ -112,7 +104,7 @@ class Home extends React.Component {
                 <Link to={`/transactions/${transaction._id}`}>
                   <Card
                     reference ={transaction.reference}
-                    amount={this.normalisePrice(transaction.amount)}
+                    amount={helpers.normalisePrice(transaction.amount)}
                     currency={transaction.currency}
                     description={transaction.description}
                     transaction_timestamp={transaction.transaction_timestamp}
