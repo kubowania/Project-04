@@ -11,6 +11,7 @@ class Counterparty(models.Model):
     image = models.CharField(max_length=200, blank=True)
     sicCodes = models.ManyToManyField(SicCode, related_name='counterparties')
 
+
     def __str__(self):
         return f'{self.companyname}'
 
