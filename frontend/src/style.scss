@@ -1,0 +1,89 @@
+@import 'bulma';
+
+.homepage-container {
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  margin-bottom: -5px;
+}
+
+div.hero-body.mainhero {
+  height: 20px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+
+.homebutton{
+  height: 30px;
+  width: 30px;
+}
+
+.content.text {
+  margin: 0px;
+}
+
+div.tile.notification.is-dark {
+  margin-bottom: 5px;
+}
+
+input.input.is-fullwidth.searchbar {
+  width: 400px;
+}
+
+.counterpartyinfo {
+  display: flex;
+  justify-content: left;
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+
+.counterpartydetails {
+  display: flex;
+
+}
+
+.showinfo {
+  margin-right: 50px;
+}
+
+.titleblock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editshow {
+  margin-right: 5px;
+}
+
+.showsections {
+  display: flex;
+  background-color: #f8f8f8;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+
+div.media-content {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+div.showsection {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.companyinfo {
+  margin-left: 30px;
+}

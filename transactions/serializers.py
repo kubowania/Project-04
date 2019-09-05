@@ -6,7 +6,7 @@ class TransactionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Transaction
-        fields = ('id', 'amount', 'currency', 'description', 'transaction_timestamp', 'counterparty',)
+        fields = ('id', 'reference', 'amount', 'currency', 'description', 'transaction_timestamp', 'counterparty',)
 
 
 class CounterpartySerializer(serializers.ModelSerializer):
@@ -34,7 +34,7 @@ class PopulatedTransactionSerializer(TransactionSerializer):
 
 
     class Meta(TransactionSerializer.Meta):
-        fields = ('id', 'amount', 'currency', 'description', 'transaction_timestamp', 'counterparties',)
+        fields = ('id', 'reference', 'amount', 'currency', 'description', 'transaction_timestamp', 'counterparties',)
 
 
 class SicCodeSerializer(serializers.ModelSerializer):

@@ -1,0 +1,312 @@
+[
+{
+  "model": "transactions.siccode",
+  "pk": 4,
+  "fields": {
+    "sicnumber": "70100"
+  }
+},
+{
+  "model": "transactions.siccode",
+  "pk": 5,
+  "fields": {
+    "sicnumber": "47110"
+  }
+},
+{
+  "model": "transactions.siccode",
+  "pk": 6,
+  "fields": {
+    "sicnumber": "49410"
+  }
+},
+{
+  "model": "transactions.siccode",
+  "pk": 7,
+  "fields": {
+    "sicnumber": "47770"
+  }
+},
+{
+  "model": "transactions.siccode",
+  "pk": 8,
+  "fields": {
+    "sicnumber": "70229"
+  }
+},
+{
+  "model": "transactions.siccode",
+  "pk": 9,
+  "fields": {
+    "sicnumber": "69201"
+  }
+},
+{
+  "model": "transactions.siccode",
+  "pk": 10,
+  "fields": {
+    "sicnumber": "74990"
+  }
+},
+{
+  "model": "transactions.siccode",
+  "pk": 11,
+  "fields": {
+    "sicnumber": "63990"
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 2,
+  "fields": {
+    "companyname": "BERRY BROS. & RUDD LIMITED",
+    "companyregistration": "05490962",
+    "image": "https://vforvegetarians.files.wordpress.com/2014/04/tworrog.jpg",
+    "sicCodes": [
+      4
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 4,
+  "fields": {
+    "companyname": "WAITROSE LIMITED",
+    "companyregistration": "00099405",
+    "image": "",
+    "sicCodes": [
+      6
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 5,
+  "fields": {
+    "companyname": "TESCO PLC",
+    "companyregistration": "00445790",
+    "image": "",
+    "sicCodes": [
+      5
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 6,
+  "fields": {
+    "companyname": "WANNA LIMITED",
+    "companyregistration": "07353626",
+    "image": "",
+    "sicCodes": [
+      6
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 7,
+  "fields": {
+    "companyname": "WOLF & BADGER LTD",
+    "companyregistration": "06980629",
+    "image": "",
+    "sicCodes": [
+      5,
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 8,
+  "fields": {
+    "companyname": "ACCOUNTANT CORNWALL LIMITED",
+    "companyregistration": "08218191",
+    "image": "",
+    "sicCodes": [
+      9
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 9,
+  "fields": {
+    "companyname": "ASDA HOLDINGS UK LIMITED",
+    "companyregistration": "03918551",
+    "image": "",
+    "sicCodes": [
+      10
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 10,
+  "fields": {
+    "companyname": "BLUE AND WHITE SQUARED LTD",
+    "companyregistration": "08198489",
+    "image": "",
+    "sicCodes": [
+      11
+    ]
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 1,
+  "fields": {
+    "reference": "3455D",
+    "amount": 34.5,
+    "currency": "GBP",
+    "description": "wine from the shop",
+    "transaction_timestamp": "2019-09-05T13:01:19.867Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 2,
+  "fields": {
+    "reference": "3453D",
+    "amount": 56.6,
+    "currency": "GBP",
+    "description": "Boxes and packages",
+    "transaction_timestamp": "2019-09-05T13:02:53.085Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 3,
+  "fields": {
+    "reference": "3453D",
+    "amount": 56.6,
+    "currency": "GBP",
+    "description": "Boxes and packages",
+    "transaction_timestamp": "2019-09-05T13:15:04.731Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 4,
+  "fields": {
+    "reference": "3453D",
+    "amount": -100.0,
+    "currency": "GBP",
+    "description": "Boxes and packages",
+    "transaction_timestamp": "2019-09-05T13:18:46.059Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 5,
+  "fields": {
+    "reference": "3453D",
+    "amount": 56.6,
+    "currency": "GBP",
+    "description": "Boxes and packages",
+    "transaction_timestamp": "2019-09-05T14:19:24.298Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 6,
+  "fields": {
+    "reference": "3453D",
+    "amount": -100.0,
+    "currency": "GBP",
+    "description": "Boxes and packages",
+    "transaction_timestamp": "2019-09-05T14:19:38.158Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 7,
+  "fields": {
+    "reference": "56000DF",
+    "amount": 2005.4,
+    "currency": "GBP",
+    "description": "Goods sold at premise",
+    "transaction_timestamp": "2019-09-05T14:42:09.372Z",
+    "counterparty": 6
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 8,
+  "fields": {
+    "reference": "Invoice45",
+    "amount": 2450.4,
+    "currency": "GBP",
+    "description": "Goods sold at premise",
+    "transaction_timestamp": "2019-09-05T14:42:42.232Z",
+    "counterparty": 5
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 9,
+  "fields": {
+    "reference": "GH4002",
+    "amount": -20.3,
+    "currency": "GBP",
+    "description": "Postage",
+    "transaction_timestamp": "2019-09-05T14:43:13.555Z",
+    "counterparty": 7
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 10,
+  "fields": {
+    "reference": "F00034",
+    "amount": -14.5,
+    "currency": "GBP",
+    "description": "Taxi expense",
+    "transaction_timestamp": "2019-09-05T14:43:44.194Z",
+    "counterparty": 10
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 11,
+  "fields": {
+    "reference": "Invoice34",
+    "amount": 6504.34,
+    "currency": "GBP",
+    "description": "Goods sold online",
+    "transaction_timestamp": "2019-09-05T14:44:18.436Z",
+    "counterparty": 9
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 12,
+  "fields": {
+    "reference": "450002",
+    "amount": -345.0,
+    "currency": "GBP",
+    "description": "Marketing material",
+    "transaction_timestamp": "2019-09-05T14:44:51.145Z",
+    "counterparty": 6
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 13,
+  "fields": {
+    "reference": "Invoice3",
+    "amount": 7840.4,
+    "currency": "GBP",
+    "description": "Goods sold at premise",
+    "transaction_timestamp": "2019-09-05T14:45:16.638Z",
+    "counterparty": 5
+  }
+}
+]
