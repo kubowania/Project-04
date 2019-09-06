@@ -6,18 +6,18 @@ class PartialLoadingIndicatorStory extends Component {
     super(props)
 
     this.state = {
-      percentage: 20
     }
 
   }
 
 
   render() {
+    console.log(this.props.percentage )
     return (
       <div>
         <PieChart
           data={[{ value: 1, key: 1, color: '#E38627' }]}
-          reveal={this.state.percentage}
+          reveal={this.props.percentage}
           lineWidth={20}
           background="#bfbfbf"
           lengthAngle={270}

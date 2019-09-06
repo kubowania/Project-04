@@ -15,18 +15,20 @@ class CounterpartyShow extends React.Component {
       formData: {
         content: ''
       },
-      errors: {}
+      errors: {},
+      percentage: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
     this.handleDeleteCounterparty = this.handleDeleteCounterparty.bind(this)
-    // this.getCounterpartyTotalAmount = this.getCounterpartyTotalAmount.bind(this)
   }
 
   componentDidMount() {
     axios.get(`/api/counterparties/${this.props.match.params.id}`)
       .then(res => this.setState({ counterparty: res.data }))
+    axios.get('/api/transactions/')
+      .then(res => this.setState({ transactions: res.data }))
   }
 
 
@@ -56,20 +58,28 @@ class CounterpartyShow extends React.Component {
       .then(() => this.props.history.push('/counterparties/'))
   }
 
-  // getCounterpartyTotalAmount() {
-  //   if(!this.state.counterparty) return 0
-  //   return this.normalisePrice(this.state.counterparty.transactions[0].amount.reduce((total, transaction) => total + transaction.amount, 0))
-  // }
+  getCounterpartyTotalAmount() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty.transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+  getCounterpartyPercentage() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmount())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+      // .then(res => this.state({percentage: res.data}))
+  }
 
   render() {
     console.log(this.state)
-    console.log(this.state.counterparty[0].transactions)
     if(!this.state.counterparty) return null
+    console.log(this.getCounterpartyTotalAmount())
+    console.log(this.getCounterpartyPercentage())
+    // console.log(this.state.transactions.length)
     return(
       <section className="section">
         <section className="columns is-desktop counterpartydetails is-dark">
           <div className="column is-auto">
-            <PartialLoadingIndicatorStory/>
+            <PartialLoadingIndicatorStory percentage={this.getCounterpartyPercentage()}/>
           </div>
           <div className="column is-two-thirds companyinfo">
             <div className="titleblock">
@@ -82,8 +92,8 @@ class CounterpartyShow extends React.Component {
             <div className="counterpartyinfo">
               <h2 className="showinfo">
               </h2>
-              <h2 className="showinfo">Company Reg code</h2>
-              <h2 className="showinfo">sic codes</h2>
+              <h2 className="showinfo">{this.state.counterparty.companyregistration}</h2>
+              <h2 className="showinfo">Current revenue statement:  {this.getCounterpartyTotalAmount()} GBP</h2>
             </div>
             <div className="addresssection">
               <h2> Address from Companies House</h2>

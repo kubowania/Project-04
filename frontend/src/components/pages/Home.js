@@ -12,8 +12,7 @@ class Home extends React.Component {
   constructor() {
     super()
     this.state = {
-      searchTerm: '',
-      transactions: []
+      searchTerm: ''
     }
 
     this.handleKeyUp = this.handleKeyUp.bind(this)
@@ -54,9 +53,12 @@ class Home extends React.Component {
     return filterTransactions
   }
 
+
+
   render() {
     console.log(this.state)
-    if(!this.state) return null
+    if(!this.state.transactions) return null
+    console.log(this.state.transactions[0].amount)
     return (
       <div>
         <div className="homepage-container">
