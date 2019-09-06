@@ -95,6 +95,14 @@ class Home extends React.Component {
 
           </div>
 
+          <div className="rowheaderhompage">
+            <h4 className="content text referenceheader">Reference</h4>
+            <h4 className="content text counterpartyheader">Counterparty</h4>
+            <h4 className="content text descriptionheader">Description</h4>
+            <h4 className="content text timestampheader">Date</h4>
+            <h4 className="content text amountheader">Amount</h4>
+          </div>
+
           {/* ROWS START */}
 
           <div className="rows is-multiline">
@@ -109,7 +117,7 @@ class Home extends React.Component {
                     amount={helpers.normalisePrice(transaction.amount)}
                     currency={transaction.currency}
                     description={transaction.description}
-                    transaction_timestamp={transaction.transaction_timestamp}
+                    transaction_timestamp={(transaction.transaction_timestamp).substring(0, 10)}
                     counterparty={transaction.counterparty} />
                 </Link>
               </div>

@@ -7,10 +7,9 @@ const Comment = ({user, createdAt, content, handledelete, _id}) => {
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>USERNAME</strong>
+            <strong>Notes:</strong>
             {' '}
             <small>{(new Date(createdAt)).toLocaleDateString()}</small>
-            <hr className="linebreaker"/>
             {content}
           </p>
           <span className="title is-2 has-text-centered">

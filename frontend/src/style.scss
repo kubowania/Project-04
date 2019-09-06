@@ -20,11 +20,59 @@
 
 .card {
   display: flex;
-  justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 5px;
-  margin-bottom: -5px;
+}
+
+h4.content.text.reference {
+  min-width: 100px;
+}
+
+h4.content.text.counterparty {
+  min-width: 100px;
+}
+
+h4.content.text.description {
+  min-width: 300px;
+}
+
+h4.content.text.timestamp {
+  min-width: 150px;
+}
+
+h4.content.text.amount {
+  width: 300px;
+}
+
+h4.content.text.referenceheader {
+  min-width: 100px;
+  color: white;
+}
+
+h4.content.text.counterpartyheader {
+  min-width: 100px;
+  color: white;
+}
+
+h4.content.text.descriptionheader {
+  min-width: 300px;
+  color: white;
+}
+
+h4.content.text.timestampheader {
+  min-width: 150px;
+  color: white;
+}
+
+h4.content.text.amountheader {
+  width: 300px;
+  color: white;
+}
+
+div.buttonsdiv {
+  width: 200px;
+  margin-bottom: 5px;
 }
 
 div.hero-body.mainhero {
@@ -37,6 +85,7 @@ div.hero-body.mainhero {
 .homebutton{
   height: 30px;
   width: 30px;
+  float: right;
 }
 
 .content.text {
@@ -102,4 +151,26 @@ div.showsection {
 
 .personaldashboard {
   display: flex;
+}
+
+.rowheader {
+  background-color: #363636;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  margin-right: 36px;
+  margin-top: 20px;
+}
+
+.rowheaderhompage {
+  background-color: #363636;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  margin-top: 20px;
+  display: flex;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.counterpartyrow {
+  margin-right: 36px;
 }

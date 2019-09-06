@@ -1,4 +1,5 @@
 import React from 'react'
+import Card from '../transactions/Card'
 import axios from 'axios'
 import Comment from '../common/Comment'
 import PartialLoadingIndicatorStory from '../transactions/PartialLoadingIndicatorStory'
@@ -66,8 +67,9 @@ class CounterpartyShow extends React.Component {
   getCounterpartyPercentage() {
     if(!this.state.transactions) return 0
     return (this.getCounterpartyTotalAmount())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
-      // .then(res => this.state({percentage: res.data}))
   }
+
+
 
   render() {
     console.log(this.state)
@@ -113,6 +115,29 @@ class CounterpartyShow extends React.Component {
           </div>
           <div className="column is-two-thirds">
             <Comment/>
+            <div className="rowheader">
+              <h2>header</h2>
+            </div>
+            <div className="rows is-multiline">
+              {this.state.counterparty.transactions.map(transaction =>
+                <div
+                  key={transaction._id}
+                  className="row is-mobile counterpartyrow"
+                >
+                  <Link to={`/transactions/${transaction._id}`}>
+                    <Card
+                      reference ={transaction.reference}
+                      amount={helpers.normalisePrice(transaction.amount)}
+                      currency={transaction.currency}
+                      description={transaction.description}
+                      transaction_timestamp={(transaction.transaction_timestamp).substring(0, 10)} />
+                  </Link>
+                </div>
+              )}
+            </div>
+
+
+
           </div>
         </div>
 
