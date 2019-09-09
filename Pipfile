@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 djangorestframework = "*"
 pyjwt = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"

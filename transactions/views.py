@@ -1,3 +1,5 @@
+import requests
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT
@@ -84,3 +86,11 @@ class TransactionDetailView(APIView):
         transaction.delete()
 
         return Response(status=HTTP_204_NO_CONTENT)
+
+
+class CompaniesHouseView(APIView):
+
+    def get(self, _request, company_id):
+        response = requests.get(f'https://api.companieshouse.gov.uk/company/{company_id}', auth=('8nDxkU-0n9UQjQnnJFY3Nk_e362SqguB0mVHWh8K', ''))
+
+        return Response(response.json())

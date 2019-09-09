@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../transactions/Card'
 import axios from 'axios'
 import Comment from '../common/Comment'
+import { Promise } from 'bluebird'
 import PartialLoadingIndicatorStory from '../transactions/PartialLoadingIndicatorStory'
 import { Link } from 'react-router-dom'
 import 'bulma'
@@ -25,12 +26,37 @@ class CounterpartyShow extends React.Component {
     this.handleDeleteCounterparty = this.handleDeleteCounterparty.bind(this)
   }
 
+  // getOwnData() {
+  //   axios.get(`/api/counterparties/${this.props.match.params.id}`)
+  //   // .then(res => this.setState({ counterparty: res.data }))
+  //   axios.get('/api/transactions/')
+  // }
+  //
+  // getCHdata() {
+  //   axios.get(`https://cors-anywhere.herokuapp.com/https://api.companieshouse.gov.uk/company/${this.state.counterparty.companyregistration}`, {
+  //     headers: {Authorization: 'Basic OG5EeGtVLTBuOVVRalFubkpGWTNOa19lMzYyU3FndUIwbVZIV2g4Sw=='}
+  //   })
+  //   // .then(res => this.setState({ chresults: res.data }))
+  // }
+
+
   componentDidMount() {
-    axios.get(`/api/counterparties/${this.props.match.params.id}`)
-      .then(res => this.setState({ counterparty: res.data }))
-    axios.get('/api/transactions/')
-      .then(res => this.setState({ transactions: res.data }))
+    Promise.props({
+      counterparty: axios.get(`/api/counterparties/${this.props.match.params.id}/`).then(res => res.data),
+      transactions: axios.get('/api/transactions/').then(res => res.data)
+    })
+      .then(data => {
+        return axios.get(`/api/companieshouse/${data.counterparty.companyregistration}`)
+          .then(response => {
+            this.setState({
+              counterparty: data.counterparty,
+              transactions: data.transactions,
+              chresults: response.data
+            })
+          })
+      })
   }
+
 
 
   handleChange(e) {
@@ -72,11 +98,12 @@ class CounterpartyShow extends React.Component {
 
 
   render() {
-    console.log(this.state)
+    console.log(this.state.chresults)
+    // console.log(this.state.counterparty.companyregistration)
     if(!this.state.counterparty) return null
+    if(!this.state.chresults) return null
     console.log(this.getCounterpartyTotalAmount())
     console.log(this.getCounterpartyPercentage())
-    // console.log(this.state.transactions.length)
     return(
       <section className="section">
         <section className="columns is-desktop counterpartydetails is-dark">
@@ -99,6 +126,12 @@ class CounterpartyShow extends React.Component {
             </div>
             <div className="addresssection">
               <h2> Address from Companies House</h2>
+              <h2 className="showinfo">Trading status: {this.state.chresults.company_status}</h2>
+              <h2 className="showinfo">Date of incorporation: {this.state.chresults.date_of_creation}</h2>
+              <h2 className="showinfo">First line: {this.state.chresults.registered_office_address.address_line_1}</h2>
+              <h2 className="showinfo">Locality: {this.state.chresults.registered_office_address.locality}</h2>
+              <h2 className="showinfo">Postal code: {this.state.chresults.registered_office_address.postal_code}</h2>
+              <h2 className="showinfo">Region: {this.state.chresults.registered_office_address.region}</h2>
             </div>
           </div>
 
