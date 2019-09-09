@@ -22,22 +22,10 @@ class CounterpartyShow extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmitNewTransaction = this.handleSubmitNewTransaction.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
     this.handleDeleteCounterparty = this.handleDeleteCounterparty.bind(this)
   }
-
-  // getOwnData() {
-  //   axios.get(`/api/counterparties/${this.props.match.params.id}`)
-  //   // .then(res => this.setState({ counterparty: res.data }))
-  //   axios.get('/api/transactions/')
-  // }
-  //
-  // getCHdata() {
-  //   axios.get(`https://cors-anywhere.herokuapp.com/https://api.companieshouse.gov.uk/company/${this.state.counterparty.companyregistration}`, {
-  //     headers: {Authorization: 'Basic OG5EeGtVLTBuOVVRalFubkpGWTNOa19lMzYyU3FndUIwbVZIV2g4Sw=='}
-  //   })
-  //   // .then(res => this.setState({ chresults: res.data }))
-  // }
 
 
   componentDidMount() {
@@ -71,6 +59,16 @@ class CounterpartyShow extends React.Component {
       .then(res => this.setState({counterparty: res.data, formData: {content: ''}}))
   }
 
+  handleSubmitNewTransaction(e) {
+    e.preventDefault()
+
+    axios.post('/api/transactions', ...this.state.formData )
+      .then(() => {
+        this.props.history.push('/transactions')
+      })
+      .catch(err => this.setState({ errors: err.response.data.errors }))
+  }
+
   handleDeleteComment(e) {
     e.preventDefault()
 
@@ -98,8 +96,8 @@ class CounterpartyShow extends React.Component {
 
 
   render() {
-    console.log(this.state.chresults)
-    // console.log(this.state.counterparty.companyregistration)
+    console.log(this.state.formData)
+    //
     if(!this.state.counterparty) return null
     if(!this.state.chresults) return null
     console.log(this.getCounterpartyTotalAmount())
@@ -121,17 +119,33 @@ class CounterpartyShow extends React.Component {
             <div className="counterpartyinfo">
               <h2 className="showinfo">
               </h2>
-              <h2 className="showinfo">{this.state.counterparty.companyregistration}</h2>
-              <h2 className="showinfo">Current revenue statement:  {this.getCounterpartyTotalAmount()} GBP</h2>
             </div>
             <div className="addresssection">
-              <h2> Address from Companies House</h2>
-              <h2 className="showinfo">Trading status: {this.state.chresults.company_status}</h2>
-              <h2 className="showinfo">Date of incorporation: {this.state.chresults.date_of_creation}</h2>
-              <h2 className="showinfo">First line: {this.state.chresults.registered_office_address.address_line_1}</h2>
-              <h2 className="showinfo">Locality: {this.state.chresults.registered_office_address.locality}</h2>
-              <h2 className="showinfo">Postal code: {this.state.chresults.registered_office_address.postal_code}</h2>
-              <h2 className="showinfo">Region: {this.state.chresults.registered_office_address.region}</h2>
+
+              <div className="tradingstatus">
+                <table className="table">
+                  <tbody>
+                    <tr>
+                      <td>Current trading status:</td>
+                      <td>{this.state.chresults.company_status}</td>
+                    </tr>
+                    <tr>
+                      <td>Companies House registration: </td>
+                      <td>{this.state.counterparty.companyregistration}</td>
+                    </tr>
+                    <tr>
+                      <td>Date of incorporation: </td>
+                      <td>{this.state.chresults.date_of_creation}</td>
+                    </tr>
+                    <tr>
+                      <td>Registered Address: </td>
+                      <td>{this.state.chresults.registered_office_address.address_line_1}<br/> {this.state.chresults.registered_office_address.address_line_2}<br/> {this.state.chresults.registered_office_address.locality} {this.state.chresults.registered_office_address.region} {this.state.chresults.registered_office_address.postal_code}  </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
             </div>
           </div>
 
@@ -141,9 +155,71 @@ class CounterpartyShow extends React.Component {
 
         <div className="columns is-desktop showsections">
           <div className="column is-auto">
-            <div className="showsection">1
+            <div className="showsection">
+              <h2 >Current revenue statement: </h2>
+              <h1 className="counterpartyrevenue">{this.getCounterpartyTotalAmount()} GBP</h1>
             </div>
-            <div className="showsection">2
+            <br/>
+            <div className="showsection">
+
+              <div className="newtransactionbox">
+                <form onSubmit={this.handleSubmitNewTransaction}>
+
+                  <div className="field">
+                    <label className="label">Reference</label>
+                    <input
+                      className="input"
+                      name="reference"
+                      placeholder="eg: Invoice45"
+                      value={this.state.formData.reference}
+                      onChange={this.handleChange}
+                    />
+                    // {this.state.errors.reference && <small className="help is-danger">{this.state.errors.reference}</small>}
+                  </div>
+
+
+                  <div className="field amount-field">
+                    <label className="label">Amount</label>
+                    <input
+                      className="input"
+                      type="number"
+                      name="amount"
+                      placeholder="eg: 1500.00"
+                      value={(this.state.formData.amount)}
+                      onChange={this.handleChange}
+                    />
+                    // {this.state.errors.amount && <small className="help is-danger">{this.state.errors.amount}</small>}
+                  </div>
+
+                  <div className="field currency-field">
+                    <label className="label">Currency</label>
+                    <input
+                      className="input"
+                      type="field"
+                      name="currency"
+                      placeholder="eg: GBP"
+                      value={(this.state.formData.currency)}
+                      onChange={this.handleChange}
+                    />
+                    // {this.state.errors.currency && <small className="help is-danger">{this.state.errors.currency}</small>}
+                  </div>
+
+                  <div className="field counterparty-field">
+                    <label className="label">Is {this.state.counterparty.companyname} the correct counterparty?</label>
+                    <input
+                      className="checkbox"
+                      type="checkbox"
+                      name="counterparty"
+                      value= {this.props.match.params.id}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+
+
+                  <button className="button is-danger">Submit</button>
+                </form>
+              </div>
+
             </div>
           </div>
           <div className="column is-two-thirds">

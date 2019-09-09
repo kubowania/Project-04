@@ -1,135 +1,79 @@
 import React from 'react'
-import Card from '../transactions/Card'
-import PartialLoadingIndicatorStoryHomepage from '../transactions/PartialLoadingIndicatorStoryHomepage'
 import axios from 'axios'
-import _ from 'lodash'
-import {Link} from 'react-router-dom'
-
-import helpers from '../../lib/helpers'
+import Auth from '../../lib/Auth'
 
 
 class Home extends React.Component {
   constructor() {
     super()
     this.state = {
-      searchTerm: ''
+      formData: {},
+      error: ''
     }
-
-    this.handleKeyUp = this.handleKeyUp.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.filterTransactions = this.filterTransactions.bind(this)
-    this.storeValue = this.storeValue.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
+  handleChange(e) {
+    const formData = {...this.state.formData, [e.target.name]: e.target.value}
+    this.setState({ formData, error: ''})
   }
 
 
+  handleSubmit(e) {
+    e.preventDefault()
 
-  componentDidMount() {
-    axios.get('api/transactions/')
-      .then(res => this.setState({ transactions: res.data}))
+    axios.post('/api/login', this.state.formData)
+      .then(res => {
+        Auth.setToken(res.data.token)
+        this.closeModal()
+        this.props.history.push('/burgers')
+      })
+      .catch(() => {
+        Auth.removeToken()
+        this.setState({error: 'Wrong credentials'})
+      })
   }
-
-  storeValue(e){
-    this.setState({ heldWord: e.target.value })
-  }
-
-
-  handleKeyUp(e) {
-    this.setState({ searchTerm: e.target.value })
-  }
-
-  handleChange() {
-    this.setState({ sortTerm: this.state.heldWord })
-  }
-
-
-
-  filterTransactions() {
-    const re = new RegExp(this.state.searchTerm, 'i')
-
-    const filterTransactions = _.filter(this.state.transactions, transaction => {
-      return re.test(transaction.reference) || re.test(transaction.amount) || re.test(transaction.transaction_timestamp) || re.test(transaction.description)
-    })
-    return filterTransactions
-  }
-
-
-
-
 
   render() {
-    console.log(this.state)
-    if(!this.state.transactions) return null
-    console.log(this.state.transactions[0].amount)
     return (
-      <div>
-        <div className="homepage-container">
-
-          <section className="columns is-desktop personaldashboard is-dark">
-            <div className="column is-auto">
-              <PartialLoadingIndicatorStoryHomepage/>
-            </div>
-            <div className="column is-two-thirds companyinfo">
-              <div className="titleblock">
-                <h1 className="title is-3">User Company Name</h1>
-                <h2>{helpers.getGlobalTotalAmount(this.state.transactions)}</h2>
+      <section className="section login-portal">
+        <div className="container">
+          <form className="loginform" onSubmit={this.handleSubmit}>
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="email"
+                  name="email"
+                  placeholder="eg: sam@samsplace.com"
+                  onChange={this.handleChange}
+                />
               </div>
             </div>
-          </section>
-
-
-
-          <div className="tile notification is-dark">
-
-            <form>
-
-              {/* SEARCH */}
-              <div className="field">
-                <div className="control">
-                  <input
-                    placeholder="Search by description, reference, date or amount"
-                    className="input  is-fullwidth searchbar"
-                    onKeyUp={this.handleKeyUp}/>
-                </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="password"
+                  name="password"
+                  placeholder="eg: ••••••••"
+                  onChange={this.handleChange}
+                />
               </div>
+              {this.state.error && <small className="help is-danger">{this.state.error}</small>}
+            </div>
 
-            </form>
+            <h2>Not a registered user? Click here to register</h2>
 
-          </div>
-
-          <div className="rowheaderhompage">
-            <h4 className="content text referenceheader">Reference</h4>
-            <h4 className="content text counterpartyheader">Counterparty</h4>
-            <h4 className="content text descriptionheader">Description</h4>
-            <h4 className="content text timestampheader">Date</h4>
-            <h4 className="content text amountheader">Amount</h4>
-          </div>
-
-          {/* ROWS START */}
-
-          <div className="rows is-multiline">
-            {this.filterTransactions().map(transaction =>
-              <div
-                key={transaction._id}
-                className="row is-mobile"
-              >
-                <Link to={`/transactions/${transaction._id}`}>
-                  <Card
-                    reference ={transaction.reference}
-                    amount={helpers.normalisePrice(transaction.amount)}
-                    currency={transaction.currency}
-                    description={transaction.description}
-                    transaction_timestamp={(transaction.transaction_timestamp).substring(0, 10)}
-                    counterparty={transaction.counterparty} />
-                </Link>
-              </div>
-            )}
-          </div>
-
-
-
+            <button className="button is-danger loginsubmit">Submit</button>
+          </form>
         </div>
-      </div>
+
+
+      </section>
     )
   }
 }

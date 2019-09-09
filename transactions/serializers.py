@@ -15,7 +15,7 @@ class CounterpartySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Counterparty
-        fields = ('id', 'companyname', 'companyregistration', 'image', 'sicCodes', 'transactions')
+        fields = ('id', 'companyname', 'companyregistration', 'sicCodes', 'transactions')
 
     def create(self, data):
         transactions_data = data.pop('transactions')

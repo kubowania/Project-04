@@ -101,6 +101,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+   'DEFAULT_RENDERER_CLASSES': [
+       # this allous to send dictionaries in our response
+       'rest_framework.renderers.JSONRenderer',
+       'rest_framework.renderers.BrowsableAPIRenderer',
+   ],
+   'DEFAULT_AUTHENTICATION_CLASSES': [
+       # this add our custom authentication middleware
+       'jwt_auth.authentication.JWTAuthentication',
+       # 'rest_framework.authentication.BasicAuthentication',
+       # 'rest_framework.authentication.SessionAuthentication',
+   ],
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
