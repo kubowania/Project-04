@@ -19,17 +19,17 @@ class PartialLoadingIndicatorStoryHomepage extends Component {
           data={[
             {
               title: 'One',
-              value: 1,
+              value: 10,
               color: '#77966D'
             },
             {
               title: 'Two',
-              value: 2,
+              value: 10,
               color: '#626D58'
             },
             {
               title: 'Three',
-              value: 2,
+              value: 20,
               color: '#544343'
             },
             {
@@ -39,22 +39,22 @@ class PartialLoadingIndicatorStoryHomepage extends Component {
             },
             {
               title: 'Five',
-              value: 10,
+              value: 5,
               color: '#E9D758'
             },
             {
               title: 'Six',
-              value: 20,
+              value: 12,
               color: '#E38627'
             },
             {
               title: 'Seven',
-              value: 20,
+              value: 1,
               color: '#C13C37'
             },
             {
               title: 'Eight',
-              value: 60,
+              value: 30,
               color: '#6A2135'
             }
           ]}

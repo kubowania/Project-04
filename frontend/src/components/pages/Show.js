@@ -112,8 +112,8 @@ class CounterpartyShow extends React.Component {
             <div className="titleblock">
               <h1 className="title is-3">{this.state.counterparty.companyname}</h1>
               <div>
-                <div className="button editshow">Edit</div>
-                <div className="button">Delete</div>
+                <div className="button is-warning editshow">Edit</div>
+                <div className="button is-danger ">Delete</div>
               </div>
             </div>
             <div className="counterpartyinfo">
@@ -174,7 +174,6 @@ class CounterpartyShow extends React.Component {
                       value={this.state.formData.reference}
                       onChange={this.handleChange}
                     />
-                    // {this.state.errors.reference && <small className="help is-danger">{this.state.errors.reference}</small>}
                   </div>
 
 
@@ -188,7 +187,6 @@ class CounterpartyShow extends React.Component {
                       value={(this.state.formData.amount)}
                       onChange={this.handleChange}
                     />
-                    // {this.state.errors.amount && <small className="help is-danger">{this.state.errors.amount}</small>}
                   </div>
 
                   <div className="field currency-field">
@@ -201,7 +199,6 @@ class CounterpartyShow extends React.Component {
                       value={(this.state.formData.currency)}
                       onChange={this.handleChange}
                     />
-                    // {this.state.errors.currency && <small className="help is-danger">{this.state.errors.currency}</small>}
                   </div>
 
                   <div className="field counterparty-field">

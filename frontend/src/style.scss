@@ -12,10 +12,46 @@
 // #626D58 - dark green
 // #77966D - green
 
+
 .homepage-container {
   margin: auto;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.homepagesignin {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 60px;
+  margin-right: 100px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.homepageherotext {
+  margin: 60px;
+}
+
+.hero-title {
+  color: white;
+  font-size: 60px;
+  font-weight: 600;
+}
+
+.hero-subtitle {
+  color: white;
+  font-weight: 600;
+}
+
+.homepagebanner {
+  background-image: url('https://i.imgur.com/wIiyzKw.jpg');
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 10px;
+  margin-top: 0.1px;
 }
 
 .card {
@@ -86,6 +122,7 @@ div.hero-body.mainhero {
   height: 30px;
   width: 30px;
   float: right;
+  margin-left: 5px;
 }
 
 .content.text {
