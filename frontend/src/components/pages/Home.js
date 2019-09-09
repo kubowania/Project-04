@@ -23,11 +23,10 @@ class Home extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    axios.post('/api/login', this.state.formData)
+    axios.post('/api/login/', this.state.formData)
       .then(res => {
         Auth.setToken(res.data.token)
-        this.closeModal()
-        this.props.history.push('/burgers')
+        this.props.history.push('/dashboard')
       })
       .catch(() => {
         Auth.removeToken()
