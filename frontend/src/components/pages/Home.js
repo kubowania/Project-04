@@ -13,6 +13,7 @@ class Home extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   handleChange(e) {
@@ -33,6 +34,11 @@ class Home extends React.Component {
         Auth.removeToken()
         this.setState({error: 'Wrong credentials'})
       })
+  }
+
+  logout() {
+    Auth.removeToken()
+    this.props.history.push('/')
   }
 
   render() {
@@ -84,6 +90,13 @@ class Home extends React.Component {
               <br/>
               <button className="button is-danger loginsubmit">Log in</button>
             </form>}
+
+            {Auth.isAuthenticated() && <div>
+              <h2>Oh no! Are you leaving already?</h2>
+              <br/>
+              <button onClick={this.logout} className="button is-warning ">Logout</button>
+            </div>}
+
           </div>
         </div>
 

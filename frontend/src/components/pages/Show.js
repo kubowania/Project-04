@@ -57,15 +57,17 @@ class CounterpartyShow extends React.Component {
     e.preventDefault()
 
     axios.post(`/api/counterparties/${this.props.match.params.id}/comments`, this.state.formData )
-      .then(res => this.setState({counterparty: res.data, formData: {content: ''}}))
+      .then(res => this.setState({
+        counterparty: res.data, formData: { content: '' }
+      }))
   }
 
   handleSubmitNewTransaction(e) {
     e.preventDefault()
 
-    axios.post('/api/transactions', ...this.state.formData )
+    axios.post('/api/transactions/', this.state.formData )
       .then(() => {
-        this.props.history.push('/transactions')
+        this.props.history.push('/dashboard/')
       })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
@@ -204,6 +206,18 @@ class CounterpartyShow extends React.Component {
                       name="currency"
                       placeholder="eg: GBP"
                       value={(this.state.formData.currency)}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+
+                  <div className="field description-field">
+                    <label className="label">Description</label>
+                    <input
+                      className="input"
+                      type="field"
+                      name="description"
+                      placeholder="eg: Payment for postage"
+                      value={(this.state.formData.description)}
                       onChange={this.handleChange}
                     />
                   </div>
