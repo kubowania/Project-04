@@ -7,6 +7,8 @@ import PartialLoadingIndicatorStory from '../transactions/PartialLoadingIndicato
 import { Link } from 'react-router-dom'
 import 'bulma'
 import 'bulma-tooltip'
+import Auth from '../../lib/Auth'
+import ShowCounterparty from '../transactions/ShowCounterparty'
 
 import helpers from '../../lib/helpers'
 
@@ -82,7 +84,9 @@ class CounterpartyShow extends React.Component {
   handleDeleteCounterparty(e) {
     e.preventDefault()
 
-    axios.delete(`/api/counterparties/${this.props.match.params.id}`)
+    axios.delete(`/api/counterparties/${this.props.match.params.id}`, {
+      headers: {Authorization: `Bearer ${Auth.getToken()}`}
+    })
       .then(() => this.props.history.push('/counterparties/'))
   }
 
@@ -121,8 +125,9 @@ class CounterpartyShow extends React.Component {
             <div className="titleblock">
               <h1 className="title is-3">{this.state.counterparty.companyname}</h1>
               <div>
+                <ShowCounterparty/>
                 <div className="button is-warning editshow">Edit</div>
-                <div className="button is-danger ">Delete</div>
+                <div className="button is-danger showpagebuttondelete tooltip" data-tooltip="WARNING! Deleting this customer will delete ALL their transactions." onClick={this.handleDeleteCounterparty}>Delete</div>
               </div>
             </div>
             <div className="counterpartyinfo">

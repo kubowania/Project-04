@@ -9,7 +9,6 @@ import Register from './components/auth/Register'
 import DebtorsList from './components/pages/DebtorsList'
 import CounterpartyShow from './components/pages/Show'
 import Dashboard from './components/pages/Dashboard'
-import NewTransaction from './components/transactions/NewTransaction'
 
 import './style.scss'
 
@@ -23,7 +22,6 @@ class App extends React.Component {
         <Switch>
           <Route path= "/counterparties/:id" component={CounterpartyShow}/>
           <Route path= "/counterparties" component={DebtorsList}/>
-          <Route path= "/new" component={NewTransaction}/>
           <Route path= "/dashboard" component={Dashboard}/>
           <Route path= "/register" component={Register}/>
           <Route path= "/" component={Home}/>

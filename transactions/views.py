@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT
 
 
-from .models import Transaction, Counterparty
-from .serializers import TransactionSerializer, CounterpartySerializer, PopulatedCounterpartySerializer
+from .models import Transaction, Counterparty, SicCode
+from .serializers import TransactionSerializer, CounterpartySerializer, PopulatedCounterpartySerializer, SicCodeSerializer
 
 # Create your views here.
 class CounterpartyListView(APIView):
@@ -18,6 +18,21 @@ class CounterpartyListView(APIView):
 
     def post(self, request):
         serializer = CounterpartySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+
+class SicCodeListView(APIView):
+
+    def get(self, _request):
+        siccodes = SicCode.objects.all() #get all siccodes
+        serializer = SicCodeSerializer(siccodes, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = SicCodeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)

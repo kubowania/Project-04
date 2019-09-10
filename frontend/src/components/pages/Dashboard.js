@@ -113,7 +113,7 @@ class Dashboard extends React.Component {
           <div className="rows is-multiline">
             {this.filterTransactions().map(transaction =>
               <div
-                key={transaction._id}
+                key={transaction.id}
                 className="row is-mobile"
               >
                 <Card
@@ -122,7 +122,7 @@ class Dashboard extends React.Component {
                   currency={transaction.currency}
                   description={transaction.description}
                   transaction_timestamp={(transaction.transaction_timestamp).substring(0, 10)}
-                  counterparty={transaction.counterparty} />
+                  counterparty={transaction.counterparty}/>
               </div>
             )}
           </div>

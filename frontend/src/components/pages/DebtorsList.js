@@ -3,6 +3,7 @@ import DebtorCard from '../transactions/DebtorCard'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Auth from '../../lib/Auth'
+import CreateNewCounterparty from '../transactions/CreateNewCounterparty.js'
 
 
 class DebtorsList extends React.Component {
@@ -24,6 +25,8 @@ class DebtorsList extends React.Component {
     return (
       <div>
         <div className="homepage-container">
+
+          <CreateNewCounterparty/>
 
           <div className="rows is-multiline">
             {this.state.counterparties.map(counterparty =>
