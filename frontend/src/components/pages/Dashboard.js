@@ -4,6 +4,7 @@ import PartialLoadingIndicatorStoryHomepage from '../transactions/PartialLoading
 import axios from 'axios'
 import _ from 'lodash'
 import {Link} from 'react-router-dom'
+import Auth from '../../lib/Auth'
 
 import helpers from '../../lib/helpers'
 
@@ -25,7 +26,9 @@ class Dashboard extends React.Component {
 
 
   componentDidMount() {
-    axios.get('api/transactions/')
+    axios.get('api/transactions/',  {
+      headers: { Authorization: `Bearer ${Auth.getToken()}`}
+    })
       .then(res => this.setState({ transactions: res.data}))
   }
 

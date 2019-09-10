@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
+import { Link } from 'react-router-dom'
 
 
 class Home extends React.Component {
@@ -43,11 +44,13 @@ class Home extends React.Component {
             <h2 className="hero-subtitle">Track your startups revenue and find like-for-like business based on your customers all in one app.</h2>
             <br/>
             <h2 className="hero-subtitle">Sign up and grow with Revenoo today.</h2>
+            <br/>
+            {!Auth.isAuthenticated() && <Link to ="/register"><button className="button is-warning">Register</button></Link>}
           </div>
         </div>
         <div className="column">
           <div className="container homepagesignin">
-            <form className="loginform" onSubmit={this.handleSubmit}>
+            {!Auth.isAuthenticated() && <form className="loginform" onSubmit={this.handleSubmit}>
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control">
@@ -60,6 +63,9 @@ class Home extends React.Component {
                   />
                 </div>
               </div>
+
+
+
               <div className="field">
                 <label className="label">Password</label>
                 <div className="control">
@@ -74,10 +80,10 @@ class Home extends React.Component {
                 {this.state.error && <small className="help is-danger">{this.state.error}</small>}
               </div>
 
-              <h2>Not a registered user? Click here to register</h2>
-
-              <button className="button is-danger loginsubmit">Submit</button>
-            </form>
+              <h2>Not a registered user? Click <Link to ="/register">here</Link> to register</h2>
+              <br/>
+              <button className="button is-danger loginsubmit">Log in</button>
+            </form>}
           </div>
         </div>
 

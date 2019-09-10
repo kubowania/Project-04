@@ -6,6 +6,7 @@ import { Promise } from 'bluebird'
 import PartialLoadingIndicatorStory from '../transactions/PartialLoadingIndicatorStory'
 import { Link } from 'react-router-dom'
 import 'bulma'
+import 'bulma-tooltip'
 
 import helpers from '../../lib/helpers'
 
@@ -105,9 +106,15 @@ class CounterpartyShow extends React.Component {
     return(
       <section className="section">
         <section className="columns is-desktop counterpartydetails is-dark">
+
           <div className="column is-auto">
-            <PartialLoadingIndicatorStory percentage={this.getCounterpartyPercentage()}/>
+            <div className="tooltip" data-tooltip={`${this.state.counterparty.companyname} makes up ${helpers.normalisePrice(this.getCounterpartyPercentage())}% of your total revenue.`}>
+              <PartialLoadingIndicatorStory
+                percentage={this.getCounterpartyPercentage()}/>
+            </div>
           </div>
+
+
           <div className="column is-two-thirds companyinfo">
             <div className="titleblock">
               <h1 className="title is-3">{this.state.counterparty.companyname}</h1>

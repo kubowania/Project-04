@@ -49,7 +49,7 @@ class PartialLoadingIndicatorStoryHomepage extends Component {
             },
             {
               title: 'Seven',
-              value: 1,
+              value: 10,
               color: '#C13C37'
             },
             {

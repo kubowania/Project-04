@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import PermissionDenied
 from django.contrib.auth.models import User
 from django.conf import settings
+import datetime
 import jwt
 from .serializers import UserSerializer
 
@@ -19,21 +20,27 @@ class RegisterView(APIView):
 
 
 class LoginView(APIView):
-
     def get_user(self, email):
         try:
             return User.objects.get(email=email)
         except User.DoesNotExist:
-            raise AuthenticationFailed({'message': 'Invalid credentials'})
+            raise PermissionDenied({'message': 'Invalid credentials'})
 
     def post(self, request):
-
         email = request.data.get('email')
         password = request.data.get('password')
-
         user = self.get_user(email)
-        if not user.check_password(password):
-            raise AuthenticationFailed({'message': 'Invalid credentials'})
 
-        token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
-        return Response({'token':token, 'message':'Welcome back %s!' % user.username})
+        print(user)
+
+        if not user.check_password(password):
+            raise PermissionDenied({'message': 'Invalid credentials'})
+
+        payload = {
+            'sub': user.id,
+            'iat': datetime.datetime.utcnow(),
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=6)
+        }
+
+        token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
+        return Response({'token': token, 'user': user.id})

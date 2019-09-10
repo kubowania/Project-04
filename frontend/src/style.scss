@@ -22,8 +22,8 @@
 .homepagesignin {
   margin-top: 40px;
   margin-bottom: 40px;
-  margin-left: 60px;
-  margin-right: 100px;
+  margin-left: 100px;
+  margin-right: 120px;
   padding: 20px;
   background-color: white;
   border-radius: 15px;
@@ -37,7 +37,7 @@
 .hero-title {
   color: white;
   font-size: 60px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .hero-subtitle {
@@ -116,6 +116,7 @@ div.hero-body.mainhero {
   padding-left: 15px;
   padding-top: 15px;
   padding-bottom: 25px;
+  display: flex;
 }
 
 .homebutton{

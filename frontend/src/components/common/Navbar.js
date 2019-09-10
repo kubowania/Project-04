@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link , withRouter} from 'react-router-dom'
+import Auth from '../../lib/Auth'
 
 class Navbar extends React.Component {
 
@@ -11,23 +12,16 @@ class Navbar extends React.Component {
       tabSelected: false
     }
     this.logout = this.logout.bind(this)
-    this.toggleNavbar = this.toggleNavbar.bind(this)
   }
 
   logout() {
-    // Auth.removeToken()
+    Auth.removeToken()
     this.props.history.push('/')
   }
 
-  toggleNavbar() {
-    this.setState({ navbarOpen: !this.state.navbarOpen })
-  }
 
 
-  componentDidUpdate(prevProps) {
-    if(prevProps.location.pathname !== this.props.location.pathname) {
-      this.setState({ navbarOpen: false })
-    }
+  componentDidUpdate() {
   }
 
   render() {
@@ -40,16 +34,18 @@ class Navbar extends React.Component {
       <section className="hero is-light">
         <div className="hero-body mainhero">
           <h1>Revenoo</h1>
+
         </div>
         <div className="hero-foot">
           <nav className="tabs is-boxed ">
             <div className="container">
               <ul>
-                <li className={activeClass('/')}><Link to ="/">The Terminal</Link></li>
-                <li className={activeClass('/dashboard')}><Link to ="/dashboard">Dashboard</Link></li>
-                <li className={activeClass('/counterparties')}><Link to ="/counterparties">Your Customers</Link></li>
-                <li className={activeClass('/burgers')}><Link to ="/burgers">Industry Breakdown</Link></li>
-                <li className={activeClass('/about')}><Link to ="/about">Browse</Link></li>
+                <li className={activeClass('/')}><Link to ="/">Home</Link></li>
+                <li className={activeClass('/dashboard')}>{Auth.isAuthenticated() && <Link to ="/dashboard">Dashboard</Link>}</li>
+                <li className={activeClass('/counterparties')}>{Auth.isAuthenticated() && <Link to ="/counterparties">Your Customers</Link>}</li>
+                <li className={activeClass('/register')}>{!Auth.isAuthenticated() && <Link to ="/register">Register</Link>}</li>
+                <li className={activeClass('/browse')}><Link to ="/browse">Browse</Link></li>
+                {Auth.isAuthenticated() && <a onClick={this.logout} className="navbar-item ">Logout</a>}
               </ul>
             </div>
           </nav>
