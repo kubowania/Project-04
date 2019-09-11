@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from '../transactions/Card'
+import CounterpartySpecficCard from '../transactions/CounterpartySpecficCard'
 import axios from 'axios'
 import Comment from '../common/Comment'
 import { Promise } from 'bluebird'
@@ -37,7 +37,7 @@ class CounterpartyShow extends React.Component {
       transactions: axios.get('/api/transactions/').then(res => res.data)
     })
       .then(data => {
-        return axios.get(`/api/companieshouse/${data.counterparty.companyregistration}`)
+        return axios.get(`/api/companieshouse/${data.counterparty.companyregistration}` || '')
           .then(response => {
             this.setState({
               counterparty: data.counterparty,
@@ -124,9 +124,8 @@ class CounterpartyShow extends React.Component {
           <div className="column is-two-thirds companyinfo">
             <div className="titleblock">
               <h1 className="title is-3">{this.state.counterparty.companyname}</h1>
-              <div>
+              <div className="showcounterpartybuttons">
                 <ShowCounterparty/>
-                <div className="button is-warning editshow">Edit</div>
                 <div className="button is-danger showpagebuttondelete tooltip" data-tooltip="WARNING! Deleting this customer will delete ALL their transactions." onClick={this.handleDeleteCounterparty}>Delete</div>
               </div>
             </div>
@@ -141,19 +140,19 @@ class CounterpartyShow extends React.Component {
                   <tbody>
                     <tr>
                       <td>Current trading status:</td>
-                      <td>{this.state.chresults.company_status}</td>
+                      <td>{this.state.chresults.company_status || 'Please update'}</td>
                     </tr>
                     <tr>
                       <td>Companies House registration: </td>
-                      <td>{this.state.counterparty.companyregistration}</td>
+                      <td>{this.state.counterparty.companyregistration  || 'Please update'}</td>
                     </tr>
                     <tr>
                       <td>Date of incorporation: </td>
-                      <td>{this.state.chresults.date_of_creation}</td>
+                      <td>{this.state.chresults.date_of_creation  || 'Please update'}</td>
                     </tr>
                     <tr>
                       <td>Registered Address: </td>
-                      <td>{this.state.chresults.registered_office_address.address_line_1}<br/> {this.state.chresults.registered_office_address.address_line_2}<br/> {this.state.chresults.registered_office_address.locality} {this.state.chresults.registered_office_address.region} {this.state.chresults.registered_office_address.postal_code}  </td>
+                      <td>{this.state.chresults.registered_office_address.address_line_1 || 'Please update'} <br/> {this.state.chresults.registered_office_address.address_line_2 || ''}<br/> {this.state.chresults.registered_office_address.locality || ''} {this.state.chresults.registered_office_address.region || ''} {this.state.chresults.registered_office_address.postal_code || ''}  </td>
                     </tr>
                   </tbody>
                 </table>
@@ -257,7 +256,7 @@ class CounterpartyShow extends React.Component {
                   className="row is-mobile counterpartyrow"
                 >
                   <Link to={`/transactions/${transaction._id}`}>
-                    <Card
+                    <CounterpartySpecficCard
                       reference ={transaction.reference}
                       amount={helpers.normalisePrice(transaction.amount)}
                       currency={transaction.currency}

@@ -31,13 +31,12 @@ class LoginView(APIView):
         password = request.data.get('password')
         user = self.get_user(email)
 
-        print(user)
-
         if not user.check_password(password):
             raise PermissionDenied({'message': 'Invalid credentials'})
 
         payload = {
             'sub': user.id,
+            'username': user.username,
             'iat': datetime.datetime.utcnow(),
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=6)
         }

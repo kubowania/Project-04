@@ -56,21 +56,27 @@
 
 .card {
   display: flex;
+  justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 5px;
 }
 
+.cardinfo {
+  display: flex;
+  justify-content: space-between;
+}
+
 h4.content.text.reference {
-  width: 100px;
+  width: 70px;
 }
 
 h4.content.text.counterparty {
-  width: 100px;
+  width: 300px;
 }
 
 h4.content.text.description {
-  width: 300px;
+  width: 200px;
 }
 
 h4.content.text.timestamp {
@@ -78,21 +84,21 @@ h4.content.text.timestamp {
 }
 
 h4.content.text.amount {
-  width: 300px;
+  width: 100px;
 }
 
 h4.content.text.referenceheader {
-  width: 100px;
+  width: 70px;
   color: white;
 }
 
 h4.content.text.counterpartyheader {
-  width: 100px;
+  width: 300px;
   color: white;
 }
 
 h4.content.text.descriptionheader {
-  width: 300px;
+  width: 200px;
   color: white;
 }
 
@@ -102,12 +108,11 @@ h4.content.text.timestampheader {
 }
 
 h4.content.text.amountheader {
-  width: 300px;
+  width: 100px;
   color: white;
 }
 
 div.buttonsdiv {
-  width: 200px;
   margin-bottom: 5px;
 }
 
@@ -121,7 +126,6 @@ div.hero-body.mainhero {
 
 .homebutton{
   height: 30px;
-  width: 30px;
   float: right;
   margin-left: 5px;
 }
@@ -157,6 +161,10 @@ input.input.is-fullwidth.searchbar {
 .titleblock {
   display: flex;
   justify-content: space-between;
+}
+
+.personaldashboard {
+  margin-top: 20px;
 }
 
 .editshow {
@@ -222,3 +230,25 @@ div.showsection {
 .showpagebuttondelete {
   margin-right: 40px;
 }
+
+section.section.showcounterparty {
+  padding: 0px;
+  margin-right: 5px;
+}
+
+.showcounterpartybuttons {
+  display: flex;
+  }
+
+  .transactionview {
+    width: 800px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 100px;
+    margin-right: 120px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }

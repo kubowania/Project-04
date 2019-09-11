@@ -6,7 +6,7 @@ from rest_framework.status import HTTP_201_CREATED, HTTP_422_UNPROCESSABLE_ENTIT
 
 
 from .models import Transaction, Counterparty, SicCode
-from .serializers import TransactionSerializer, CounterpartySerializer, PopulatedCounterpartySerializer, SicCodeSerializer
+from .serializers import TransactionSerializer, CounterpartySerializer, PopulatedCounterpartySerializer, SicCodeSerializer, PopulatedTransactionSerializer
 
 # Create your views here.
 class CounterpartyListView(APIView):
@@ -21,6 +21,7 @@ class CounterpartyListView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
+
 
         return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
@@ -68,7 +69,7 @@ class TransactionListView(APIView):
 
     def get(self, _request):
         transactions = Transaction.objects.all() #get all transactions
-        serializer = TransactionSerializer(transactions, many=True)
+        serializer = PopulatedTransactionSerializer(transactions, many=True)
         return Response(serializer.data)
 
     def post(self, request):
@@ -84,7 +85,7 @@ class TransactionDetailView(APIView):
 
     def get(self, _request, pk):
         transaction = Transaction.objects.get(pk=pk)
-        serializer = TransactionSerializer(transaction)
+        serializer = PopulatedTransactionSerializer(transaction)
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -93,6 +94,8 @@ class TransactionDetailView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+
+
 
         return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 

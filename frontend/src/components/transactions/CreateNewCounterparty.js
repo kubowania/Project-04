@@ -24,7 +24,9 @@ class CreateNewCounterparty extends React.Component {
   constructor() {
     super()
     this.state = {
-      formData: {},
+      formData: {
+        transactions: []
+      },
       error: '',
       modalIsOpen: false
     }
@@ -52,7 +54,7 @@ class CreateNewCounterparty extends React.Component {
 
   handleSicCodeChange(selectedOption) {
 
-    const formData = { ...this.state.formData, siccodes: (selectedOption || []).map(option => option.value) }
+    const formData = { ...this.state.formData, sicCodes: (selectedOption || []).map(option => option.value) }
     this.setState({ formData })
   }
 
@@ -61,7 +63,7 @@ class CreateNewCounterparty extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    axios.put('/api/counterparties/', this.state.formData, {
+    axios.post('/api/counterparties/', this.state.formData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
       .then(() => this.props.history.push(`/counterparties/${this.props.match.params.id}/`))
@@ -71,7 +73,7 @@ class CreateNewCounterparty extends React.Component {
   componentDidMount() {
     axios.get('/api/siccodes/')
       .then(res => this.setState({
-        siccodes: res.data.map(option => {
+        sicCodes: res.data.map(option => {
           return {label: option.sicnumber, value: option.id}
         }) }))
   }
@@ -82,8 +84,8 @@ class CreateNewCounterparty extends React.Component {
     const { selectedOption } = this.state
 
     return (
-      <section className="section login-portal">
-        {Auth.isAuthenticated() && <button className="button is-primary is-warning loginbutton" onClick={this.openModal}>Add a new customer</button>}
+      <section className="section">
+        {Auth.isAuthenticated() && <button className="button is-primary is-warning" onClick={this.openModal}>Add a new customer</button>}
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -128,7 +130,7 @@ class CreateNewCounterparty extends React.Component {
                 name="sicCodes"
                 value={selectedOption}
 
-                options={this.state.siccodes}
+                options={this.state.sicCodes}
                 isMulti
                 onChange={this.handleSicCodeChange}
               />

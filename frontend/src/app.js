@@ -8,7 +8,9 @@ import Home from './components/pages/Home'
 import Register from './components/auth/Register'
 import DebtorsList from './components/pages/DebtorsList'
 import CounterpartyShow from './components/pages/Show'
+import ShowTransaction from './components/pages/ShowTransaction'
 import Dashboard from './components/pages/Dashboard'
+
 
 import './style.scss'
 
@@ -21,6 +23,7 @@ class App extends React.Component {
         <Navbar/>
         <Switch>
           <Route path= "/counterparties/:id" component={CounterpartyShow}/>
+          <Route path= "/dashboard/:id" component={ShowTransaction}/>
           <Route path= "/counterparties" component={DebtorsList}/>
           <Route path= "/dashboard" component={Dashboard}/>
           <Route path= "/register" component={Register}/>

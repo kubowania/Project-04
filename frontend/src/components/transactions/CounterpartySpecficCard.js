@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const Card = ({id, reference, amount, currency, description, transaction_timestamp, counterparty}) => {
+const CounterpartySpecficCard = ({id, reference, amount, currency, description, transaction_timestamp}) => {
 
 
 
@@ -10,7 +10,6 @@ const Card = ({id, reference, amount, currency, description, transaction_timesta
     <div className="card">
       <div className="cardinfo">
         <h4 className="content text reference" >{reference}</h4>
-        <h4 className="content text counterparty">{counterparty}</h4>
         <h4 className="content text description">{description}</h4>
         <h4 className="content text timestamp">{transaction_timestamp}</h4>
         <h4 className="content text amount">{amount} {currency}</h4>
@@ -22,4 +21,4 @@ const Card = ({id, reference, amount, currency, description, transaction_timesta
   )
 }
 
-export default Card
+export default CounterpartySpecficCard

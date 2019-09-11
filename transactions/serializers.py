@@ -27,14 +27,13 @@ class CounterpartySerializer(serializers.ModelSerializer):
         return counterparty
 
 
-
 class PopulatedTransactionSerializer(TransactionSerializer):
 
-    counterparties = CounterpartySerializer(many=True)
+    counterparty = CounterpartySerializer()
 
 
     class Meta(TransactionSerializer.Meta):
-        fields = ('id', 'reference', 'amount', 'currency', 'description', 'transaction_timestamp', 'counterparties',)
+        fields = ('id', 'reference', 'amount', 'currency', 'description', 'transaction_timestamp', 'counterparty',)
 
 
 class SicCodeSerializer(serializers.ModelSerializer):

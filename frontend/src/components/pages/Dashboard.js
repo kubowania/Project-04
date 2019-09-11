@@ -61,8 +61,8 @@ class Dashboard extends React.Component {
 
 
   render() {
-    console.log(this.state)
     if(!this.state.transactions) return null
+    console.log(Auth.getPayload().username)
     console.log(this.state.transactions[0].amount)
     return (
       <div>
@@ -73,10 +73,9 @@ class Dashboard extends React.Component {
               <PartialLoadingIndicatorStoryHomepage/>
             </div>
             <div className="column is-two-thirds companyinfo">
-              <div className="titleblock">
-                <h1 className="title is-3">User Company Name</h1>
-                <h2>{helpers.getGlobalTotalAmount(this.state.transactions)}</h2>
-              </div>
+              <h1 className="title is-3">Welcome back {Auth.getPayload().username}</h1>
+              <h2>Your total revenue is {helpers.getGlobalTotalAmount(this.state.transactions)}</h2>
+              <h2></h2>
             </div>
           </section>
 
@@ -101,7 +100,7 @@ class Dashboard extends React.Component {
           </div>
 
           <div className="rowheaderhompage">
-            <h4 className="content text referenceheader">Reference</h4>
+            <h4 className="content text referenceheader">Ref</h4>
             <h4 className="content text counterpartyheader">Counterparty</h4>
             <h4 className="content text descriptionheader">Description</h4>
             <h4 className="content text timestampheader">Date</h4>
@@ -117,12 +116,13 @@ class Dashboard extends React.Component {
                 className="row is-mobile"
               >
                 <Card
+                  id = {transaction.id}
                   reference ={transaction.reference}
                   amount={helpers.normalisePrice(transaction.amount)}
                   currency={transaction.currency}
                   description={transaction.description}
                   transaction_timestamp={(transaction.transaction_timestamp).substring(0, 10)}
-                  counterparty={transaction.counterparty}/>
+                  counterparty={transaction.counterparty.companyname}/>
               </div>
             )}
           </div>

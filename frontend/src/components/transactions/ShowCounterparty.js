@@ -24,7 +24,9 @@ class ShowCounterparty extends React.Component {
   constructor() {
     super()
     this.state = {
-      formData: {},
+      formData: {
+        transactions: []
+      },
       error: '',
       modalIsOpen: false
     }
@@ -32,17 +34,7 @@ class ShowCounterparty extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
-  }
-
-
-  componentDidMount() {
-    axios.get(`/api/counterparties/${this.props.match.params.id}/`)
-      .then(res => this.setState({ formData: res.data }))
-
-    axios.get('/api/siccodes/')
-      .then(res => this.setState({ categories: res.data.map(option => {
-        return {label: option.siccode, value: option.id}
-      }) }))
+    this.handleSicCodeChange = this.handleSicCodeChange.bind(this)
   }
 
   openModal() {
@@ -54,24 +46,40 @@ class ShowCounterparty extends React.Component {
   }
 
 
-  handleChange(e, selectedOption) {
+  handleChange(e) {
     const formData = {...this.state.formData, [e.target.name]: e.target.value}
-    this.setState({ formData, error: ''})
-    console.log(selectedOption)
-    this.setState({ selectedCategory: selectedOption.value })
+    this.setState({ formData })
+    console.log(e.target.value)
   }
+
+  handleSicCodeChange(selectedOption) {
+
+    const formData = { ...this.state.formData, sicCodes: (selectedOption || []).map(option => option.value) }
+    this.setState({ formData })
+  }
+
 
 
   handleSubmit(e) {
     e.preventDefault()
 
-    axios.put(`/api/counterparties/${this.props.match.params.id}/`, this.state.formData, {
+    axios.put('/api/counterparties/', this.state.formData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
       .then(() => this.props.history.push(`/counterparties/${this.props.match.params.id}/`))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
+  componentDidMount() {
+    axios.get(`/api/counterparties/${this.props.match.params.id}`)
+      .then(res => this.setState({ formData: res.data }))
+
+    axios.get('/api/siccodes/')
+      .then(res => this.setState({
+        sicCodes: res.data.map(option => {
+          return {label: option.sicnumber, value: option.id}
+        }) }))
+  }
 
 
   render() {
@@ -79,8 +87,8 @@ class ShowCounterparty extends React.Component {
     const { selectedOption } = this.state
 
     return (
-      <section className="section login-portal">
-        {Auth.isAuthenticated() && <button className="button is-primary is-warning loginbutton" onClick={this.openModal}>Edit</button>}
+      <section className="section showcounterparty">
+        {Auth.isAuthenticated() && <button className="button is-primary is-warning" onClick={this.openModal}>Edit Details</button>}
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -124,27 +132,14 @@ class ShowCounterparty extends React.Component {
               <Select
                 name="sicCodes"
                 value={selectedOption}
-                onChange={this.handleChange}
-                options={this.state.categories}
+
+                options={this.state.sicCodes}
+                isMulti
+                onChange={this.handleSicCodeChange}
               />
-
-              <div className="field currency-field">
-                <label className="label">Sic Codes</label>
-                <input
-                  className="input"
-                  type="field"
-                  name="sicCodes"
-                  placeholder="eg: 7100"
-                  value={(this.state.formData.sicCodes)}
-                  onChange={this.handleChange}
-                />
-              </div>
-
 
               <button className="button is-danger">Submit</button>
             </form>
-
-
 
           </div>
         </Modal>
