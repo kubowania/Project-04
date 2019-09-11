@@ -15,8 +15,8 @@
 
 .homepage-container {
   margin: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .homepagesignin {
@@ -207,7 +207,7 @@ div.showsection {
   margin-top: 20px;
 }
 
-.rowheaderhompage {
+.rowheaderuniversal {
   background-color: #363636;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -227,6 +227,11 @@ div.showsection {
   font-weight: bolder;
 }
 
+.debtorlist {
+  margin-left: 28px;
+  margin-right: 28px;
+}
+
 .showpagebuttondelete {
   margin-right: 40px;
 }
@@ -240,8 +245,13 @@ section.section.showcounterparty {
   display: flex;
   }
 
+  section.section.addcustomer {
+    padding-bottom: 0px;
+    padding-top: 30px;
+  }
+
   .transactionview {
-    width: 800px;
+    min-width: 800px;
     margin-top: 40px;
     margin-bottom: 40px;
     margin-left: 100px;
@@ -250,5 +260,15 @@ section.section.showcounterparty {
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
+  .transactionviewbutton {
+    float: right;
+  }
+
+  .transactiontitle {
+    margin-left: 5px;
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 30px;
   }

@@ -103,14 +103,14 @@ class CounterpartyShow extends React.Component {
 
 
   render() {
-    console.log(this.state.formData)
+    console.log(this.state.transactions)
     //
     if(!this.state.counterparty) return null
     if(!this.state.chresults) return null
     console.log(this.getCounterpartyTotalAmount())
     console.log(this.getCounterpartyPercentage())
     return(
-      <section className="section">
+      <section className="section showcontainer">
         <section className="columns is-desktop counterpartydetails is-dark">
 
           <div className="column is-auto">
@@ -255,14 +255,13 @@ class CounterpartyShow extends React.Component {
                   key={transaction._id}
                   className="row is-mobile counterpartyrow"
                 >
-                  <Link to={`/transactions/${transaction._id}`}>
-                    <CounterpartySpecficCard
-                      reference ={transaction.reference}
-                      amount={helpers.normalisePrice(transaction.amount)}
-                      currency={transaction.currency}
-                      description={transaction.description}
-                      transaction_timestamp={(transaction.transaction_timestamp).substring(0, 10)} />
-                  </Link>
+                  <CounterpartySpecficCard
+                    id = {transaction.id}
+                    reference ={transaction.reference}
+                    amount={helpers.normalisePrice(transaction.amount)}
+                    currency={transaction.currency}
+                    description={transaction.description}
+                    transaction_timestamp={(transaction.transaction_timestamp).substring(0, 10)} />
                 </div>
               )}
             </div>

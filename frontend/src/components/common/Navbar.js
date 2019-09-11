@@ -44,7 +44,6 @@ class Navbar extends React.Component {
                 <li className={activeClass('/dashboard')}>{Auth.isAuthenticated() && <Link to ="/dashboard">Dashboard</Link>}</li>
                 <li className={activeClass('/counterparties')}>{Auth.isAuthenticated() && <Link to ="/counterparties">Your Customers</Link>}</li>
                 <li className={activeClass('/register')}>{!Auth.isAuthenticated() && <Link to ="/register">Register</Link>}</li>
-                <li className={activeClass('/browse')}><Link to ="/browse">Browse</Link></li>
                 {Auth.isAuthenticated() && <a onClick={this.logout} className="navbar-item ">Logout</a>}
               </ul>
             </div>

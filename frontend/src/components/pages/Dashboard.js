@@ -5,6 +5,8 @@ import axios from 'axios'
 import _ from 'lodash'
 import {Link} from 'react-router-dom'
 import Auth from '../../lib/Auth'
+import PieChart from 'react-minimal-pie-chart'
+import { Promise } from 'bluebird'
 
 import helpers from '../../lib/helpers'
 
@@ -20,17 +22,127 @@ class Dashboard extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.filterTransactions = this.filterTransactions.bind(this)
     this.storeValue = this.storeValue.bind(this)
-
+    this.getCounterpartyTotalAmountOne = this.getCounterpartyTotalAmountOne.bind(this)
+    this.getCounterpartyTotalAmountTwo = this.getCounterpartyTotalAmountTwo.bind(this)
+    this.getCounterpartyTotalAmountThree = this.getCounterpartyTotalAmountThree.bind(this)
+    this.getCounterpartyTotalAmountFour = this.getCounterpartyTotalAmountFour.bind(this)
+    this.getCounterpartyTotalAmountFive = this.getCounterpartyTotalAmountFive.bind(this)
+    this.getCounterpartyTotalAmountSix = this.getCounterpartyTotalAmountSix.bind(this)
+    this.getCounterpartyTotalAmountSeven = this.getCounterpartyTotalAmountSeven.bind(this)
+    this.getCounterpartyTotalAmountEight = this.getCounterpartyTotalAmountEight.bind(this)
+    this.getCounterpartyPercentageOne = this.getCounterpartyPercentageOne.bind(this)
+    this.getCounterpartyPercentageTwo = this.getCounterpartyPercentageTwo.bind(this)
+    this.getCounterpartyPercentageThree = this.getCounterpartyPercentageThree.bind(this)
+    this.getCounterpartyPercentageFour = this.getCounterpartyPercentageFour.bind(this)
+    this.getCounterpartyPercentageFive = this.getCounterpartyPercentageFive.bind(this)
+    this.getCounterpartyPercentageSix = this.getCounterpartyPercentageSix.bind(this)
+    this.getCounterpartyPercentageSeven = this.getCounterpartyPercentageSeven.bind(this)
+    this.getCounterpartyPercentageEight = this.getCounterpartyPercentageEight.bind(this)
   }
 
 
 
   componentDidMount() {
-    axios.get('api/transactions/',  {
-      headers: { Authorization: `Bearer ${Auth.getToken()}`}
+    Promise.props({
+      counterparty: axios.get('/api/counterparties/').then(res => res.data),
+      transactions: axios.get('/api/transactions/').then(res => res.data)
     })
-      .then(res => this.setState({ transactions: res.data}))
+      .then(data => {
+        return axios.get(`/api/companieshouse/${data.counterparty.companyregistration}` || '')
+          .then(response => {
+            this.setState({
+              counterparty: data.counterparty,
+              transactions: data.transactions,
+              chresults: response.data
+            })
+          })
+      })
   }
+
+  getCounterpartyTotalAmountOne() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[0].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+  getCounterpartyTotalAmountTwo() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[1].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+
+  getCounterpartyTotalAmountThree() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[2].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+  getCounterpartyTotalAmountFour() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[3].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+  getCounterpartyTotalAmountFive() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[4].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+
+  getCounterpartyTotalAmountSix() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[5].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+  getCounterpartyTotalAmountSeven() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[6].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+  getCounterpartyTotalAmountEight() {
+    if(!this.state.counterparty) return 0
+    return helpers.normalisePrice(this.state.counterparty[7].transactions.reduce((total, transaction) => total + transaction.amount, 0))
+  }
+
+  getCounterpartyPercentageOne() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountOne())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+  getCounterpartyPercentageTwo() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountTwo())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+  getCounterpartyPercentageThree() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountThree())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+  getCounterpartyPercentageFour() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountFour())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+  getCounterpartyPercentageFive() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountFive())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+  getCounterpartyPercentageSix() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountSix())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+  getCounterpartyPercentageSeven() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountSeven())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+  getCounterpartyPercentageEight() {
+    if(!this.state.transactions) return 0
+    return (this.getCounterpartyTotalAmountEight())/ (helpers.getGlobalTotalAmount(this.state.transactions)) *100
+  }
+
+
+
 
   storeValue(e){
     this.setState({ heldWord: e.target.value })
@@ -58,19 +170,82 @@ class Dashboard extends React.Component {
 
 
 
-
-
   render() {
     if(!this.state.transactions) return null
-    console.log(Auth.getPayload().username)
-    console.log(this.state.transactions[0].amount)
+    console.log(this.state.counterparty)
+    console.log(this.getCounterpartyTotalAmountOne())
+    console.log(this.getCounterpartyTotalAmountTwo())
+    console.log(this.getCounterpartyTotalAmountThree())
+    console.log(this.getCounterpartyTotalAmountFour())
+    console.log(this.getCounterpartyTotalAmountFive())
+    console.log(this.getCounterpartyTotalAmountSix())
+    console.log(this.getCounterpartyTotalAmountSeven())
+    console.log(this.getCounterpartyTotalAmountEight())
     return (
       <div>
         <div className="homepage-container">
 
           <section className="columns is-desktop personaldashboard is-dark">
             <div className="column is-auto">
-              <PartialLoadingIndicatorStoryHomepage/>
+
+
+              <div>
+                <PieChart
+                  data={[
+                    {
+                      title: 'One',
+                      value: this.getCounterpartyPercentageOne(),
+                      color: '#77966D'
+                    },
+                    {
+                      title: 'Two',
+                      value: this.getCounterpartyPercentageTwo(),
+                      color: '#626D58'
+                    },
+                    {
+                      title: 'Three',
+                      value: this.getCounterpartyPercentageThree(),
+                      color: '#544343'
+                    },
+                    {
+                      title: 'Four',
+                      value: this.getCounterpartyPercentageFour(),
+                      color: '#297373'
+                    },
+                    {
+                      title: 'Five',
+                      value: this.getCounterpartyPercentageFive(),
+                      color: '#E9D758'
+                    },
+                    {
+                      title: 'Six',
+                      value: this.getCounterpartyPercentageSix(),
+                      color: '#E38627'
+                    },
+                    {
+                      title: 'Seven',
+                      value: this.getCounterpartyPercentageSeven(),
+                      color: '#C13C37'
+                    },
+                    {
+                      title: 'Eight',
+                      value: this.getCounterpartyPercentageEight(),
+                      color: '#6A2135'
+                    }
+                  ]}
+
+
+
+                  reveal={this.state.percentage}
+                  lineWidth={20}
+                  background="#bfbfbf"
+                  lengthAngle={270}
+                  rounded
+                  animate
+                />
+              </div>
+
+
             </div>
             <div className="column is-two-thirds companyinfo">
               <h1 className="title is-3">Welcome back {Auth.getPayload().username}</h1>
@@ -99,7 +274,7 @@ class Dashboard extends React.Component {
 
           </div>
 
-          <div className="rowheaderhompage">
+          <div className="rowheaderuniversal">
             <h4 className="content text referenceheader">Ref</h4>
             <h4 className="content text counterpartyheader">Counterparty</h4>
             <h4 className="content text descriptionheader">Description</h4>

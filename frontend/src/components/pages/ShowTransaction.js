@@ -1,14 +1,8 @@
 import React from 'react'
-import Card from '../transactions/Card'
 import axios from 'axios'
-import Comment from '../common/Comment'
-import { Promise } from 'bluebird'
-import PartialLoadingIndicatorStory from '../transactions/PartialLoadingIndicatorStory'
-import { Link } from 'react-router-dom'
 import 'bulma'
 import 'bulma-tooltip'
 import Auth from '../../lib/Auth'
-import ShowCounterparty from '../transactions/ShowCounterparty'
 
 import helpers from '../../lib/helpers'
 
@@ -61,7 +55,7 @@ class ShowTransaction extends React.Component {
     return(
       <section className="section">
         <div className="container transactionview">
-          <h2>Your Transaction in detail:</h2>
+          <h2 className="transactiontitle">Your Transaction in detail</h2>
           <table className="table">
             <tbody>
               <tr>
@@ -80,6 +74,7 @@ class ShowTransaction extends React.Component {
               </tr>
             </tbody>
           </table>
+          <button className="button is-danger transactionviewbutton" onClick={this.handleDelete}>Delete this transaction</button>
         </div>
 
 

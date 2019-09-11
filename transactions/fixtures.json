@@ -1,148 +1,72 @@
 [
 {
   "model": "transactions.siccode",
-  "pk": 4,
-  "fields": {
-    "sicnumber": "70100"
-  }
-},
-{
-  "model": "transactions.siccode",
-  "pk": 5,
-  "fields": {
-    "sicnumber": "47110"
-  }
-},
-{
-  "model": "transactions.siccode",
-  "pk": 6,
-  "fields": {
-    "sicnumber": "49410"
-  }
-},
-{
-  "model": "transactions.siccode",
   "pk": 7,
   "fields": {
-    "sicnumber": "47770"
+    "sicnumber": "9900-9999 Nonclassifiable"
   }
 },
 {
   "model": "transactions.siccode",
   "pk": 8,
   "fields": {
-    "sicnumber": "70229"
+    "sicnumber": "6000-6799 Finance, Insurance and Real Estate"
   }
 },
 {
   "model": "transactions.siccode",
   "pk": 9,
   "fields": {
-    "sicnumber": "69201"
+    "sicnumber": "4000-4999 Transportation, Communications, Electric, Gas and Sanitary service"
   }
 },
 {
   "model": "transactions.siccode",
   "pk": 10,
   "fields": {
-    "sicnumber": "74990"
+    "sicnumber": "1000-1499 Mining"
   }
 },
 {
   "model": "transactions.siccode",
   "pk": 11,
   "fields": {
-    "sicnumber": "63990"
+    "sicnumber": "0100-0999 Agriculture, Forestry and Fishing"
   }
 },
 {
-  "model": "transactions.counterparty",
-  "pk": 2,
+  "model": "transactions.siccode",
+  "pk": 12,
   "fields": {
-    "companyname": "BERRY BROS. & RUDD LIMITED",
-    "companyregistration": "05490962",
-    "sicCodes": [
-      4
-    ]
+    "sicnumber": "2000-3999 Manufacturing"
   }
 },
 {
-  "model": "transactions.counterparty",
-  "pk": 4,
+  "model": "transactions.siccode",
+  "pk": 13,
   "fields": {
-    "companyname": "WAITROSE LIMITED",
-    "companyregistration": "00099405",
-    "sicCodes": [
-      6
-    ]
+    "sicnumber": "5000-5199 Wholesale Trade"
   }
 },
 {
-  "model": "transactions.counterparty",
-  "pk": 5,
+  "model": "transactions.siccode",
+  "pk": 14,
   "fields": {
-    "companyname": "TESCO PLC",
-    "companyregistration": "00445790",
-    "sicCodes": [
-      5
-    ]
+    "sicnumber": "5200-5999 Retail Trade"
   }
 },
 {
-  "model": "transactions.counterparty",
-  "pk": 6,
+  "model": "transactions.siccode",
+  "pk": 15,
   "fields": {
-    "companyname": "WANNA LIMITED",
-    "companyregistration": "07353626",
-    "sicCodes": [
-      6
-    ]
+    "sicnumber": "7000-8999 Services"
   }
 },
 {
-  "model": "transactions.counterparty",
-  "pk": 7,
+  "model": "transactions.siccode",
+  "pk": 16,
   "fields": {
-    "companyname": "WOLF & BADGER LTD",
-    "companyregistration": "06980629",
-    "sicCodes": [
-      5,
-      7,
-      8
-    ]
-  }
-},
-{
-  "model": "transactions.counterparty",
-  "pk": 8,
-  "fields": {
-    "companyname": "ACCOUNTANT CORNWALL LIMITED",
-    "companyregistration": "08218191",
-    "sicCodes": [
-      9
-    ]
-  }
-},
-{
-  "model": "transactions.counterparty",
-  "pk": 9,
-  "fields": {
-    "companyname": "ASDA HOLDINGS UK LIMITED",
-    "companyregistration": "03918551",
-    "sicCodes": [
-      10
-    ]
-  }
-},
-{
-  "model": "transactions.counterparty",
-  "pk": 10,
-  "fields": {
-    "companyname": "BLUE AND WHITE SQUARED LTD",
-    "companyregistration": "08198489",
-    "sicCodes": [
-      11
-    ]
+    "sicnumber": "9100-9729 Public Administration"
   }
 },
 {
@@ -299,6 +223,174 @@
     "description": "Goods sold at premise",
     "transaction_timestamp": "2019-09-05T14:45:16.638Z",
     "counterparty": 5
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 2,
+  "fields": {
+    "companyname": "BERRY BROS. & RUDD LIMITED",
+    "companyregistration": "05490962",
+    "sicCodes": [
+      14
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 4,
+  "fields": {
+    "companyname": "WAITROSE LIMITED",
+    "companyregistration": "00099405",
+    "sicCodes": [
+      13
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 5,
+  "fields": {
+    "companyname": "TESCO PLC",
+    "companyregistration": "00445790",
+    "sicCodes": [
+      13
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 6,
+  "fields": {
+    "companyname": "WANNA LIMITED",
+    "companyregistration": "07353626",
+    "sicCodes": [
+      12
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 7,
+  "fields": {
+    "companyname": "WOLF & BADGER LTD",
+    "companyregistration": "06980629",
+    "sicCodes": [
+      13,
+      14,
+      15
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 8,
+  "fields": {
+    "companyname": "ACCOUNTANT CORNWALL LIMITED",
+    "companyregistration": "08218191",
+    "sicCodes": [
+      15
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 9,
+  "fields": {
+    "companyname": "ASDA HOLDINGS UK LIMITED",
+    "companyregistration": "03918551",
+    "sicCodes": [
+      13,
+      14
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 10,
+  "fields": {
+    "companyname": "BLUE AND WHITE SQUARED LTD",
+    "companyregistration": "08198489",
+    "sicCodes": [
+      12
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 11,
+  "fields": {
+    "companyname": "FARM ADVENTURE LTD",
+    "companyregistration": "07410439",
+    "sicCodes": [
+      9
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 12,
+  "fields": {
+    "companyname": "POST OFFICE LIMITED",
+    "companyregistration": "02154540",
+    "sicCodes": [
+      15
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 13,
+  "fields": {
+    "companyname": "AJH COMMERCIAL LIMITED",
+    "companyregistration": "11051970",
+    "sicCodes": [
+      8
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 14,
+  "fields": {
+    "companyname": "DA ANALYTICS LTD",
+    "companyregistration": "11812143",
+    "sicCodes": [
+      15
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 15,
+  "fields": {
+    "companyname": "FACEBOOK UK LTD",
+    "companyregistration": "06331310",
+    "sicCodes": [
+      15
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 16,
+  "fields": {
+    "companyname": "TILES & CO. LTD",
+    "companyregistration": "06736754",
+    "sicCodes": [
+      8
+    ]
+  }
+},
+{
+  "model": "transactions.counterparty",
+  "pk": 17,
+  "fields": {
+    "companyname": "NPOWER LIMITED",
+    "companyregistration": "03653277",
+    "sicCodes": [
+      9
+    ]
   }
 }
 ]

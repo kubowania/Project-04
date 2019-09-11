@@ -28,22 +28,26 @@ class DebtorsList extends React.Component {
 
           <CreateNewCounterparty/>
 
-          <div className="rows is-multiline">
-            {this.state.counterparties.map(counterparty =>
-              <div
-                key={counterparty.id}
-                className="row is-mobile"
-              >
-                <Link to={`/counterparties/${counterparty.id}`}>
-                  <DebtorCard
-                    companyname={counterparty.companyname}
-                    companyregistration={counterparty.companyregistration}
-                    image={counterparty.image}/>
-                </Link>
-              </div>
-            )}
+          <div className='debtorlist'>
+            <div className="rowheaderuniversal">
+              <h4 className="content text counterpartyheader">Company Name</h4>
+            </div>
+            <div className="rows is-multiline">
+              {this.state.counterparties.map(counterparty =>
+                <div
+                  key={counterparty.id}
+                  className="row is-mobile"
+                >
+                  <Link to={`/counterparties/${counterparty.id}`}>
+                    <DebtorCard
+                      companyname={counterparty.companyname}
+                      companyregistration={counterparty.companyregistration}
+                      image={counterparty.image}/>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-
 
 
         </div>

@@ -84,7 +84,7 @@ class CreateNewCounterparty extends React.Component {
     const { selectedOption } = this.state
 
     return (
-      <section className="section">
+      <section className="section addcustomer">
         {Auth.isAuthenticated() && <button className="button is-primary is-warning" onClick={this.openModal}>Add a new customer</button>}
         <Modal
           isOpen={this.state.modalIsOpen}

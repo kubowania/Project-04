@@ -1,7 +1,7 @@
 from django.db import models
 
 class SicCode(models.Model):
-    sicnumber = models.CharField(max_length=8)
+    sicnumber = models.CharField(max_length=200)
     def __str__(self):
         return self.sicnumber
 
