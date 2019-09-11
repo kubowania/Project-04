@@ -69,7 +69,7 @@ class CounterpartyShow extends React.Component {
 
     axios.post('/api/transactions/', this.state.formData )
       .then(() => {
-        this.props.history.push('/dashboard/')
+        this.props.history.push(`/counterparties/${this.props.match.params.id}/`)
       })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
@@ -103,12 +103,9 @@ class CounterpartyShow extends React.Component {
 
 
   render() {
-    console.log(this.state.transactions)
-    //
     if(!this.state.counterparty) return null
     if(!this.state.chresults) return null
-    console.log(this.getCounterpartyTotalAmount())
-    console.log(this.getCounterpartyPercentage())
+    console.log(this.state.counterparty)
     return(
       <section className="section showcontainer">
         <section className="columns is-desktop counterpartydetails is-dark">
@@ -136,6 +133,8 @@ class CounterpartyShow extends React.Component {
             <div className="addresssection">
 
               <div className="tradingstatus">
+                <h2>The following information is populated from <Link to="https://www.gov.uk/government/organisations/companies-house">Companies House</Link> <br/> register. Companies House is the United Kingdoms registrar of <br/> companies and is an executive agency and trading fund of Her <br/> Majestys Government.</h2>
+                <br/>
                 <table className="table">
                   <tbody>
                     <tr>

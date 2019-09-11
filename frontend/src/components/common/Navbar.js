@@ -33,7 +33,7 @@ class Navbar extends React.Component {
     return (
       <section className="hero is-light">
         <div className="hero-body mainhero">
-          <h1>Revenoo</h1>
+          <h1 className="logo">Revenoo</h1>
 
         </div>
         <div className="hero-foot">

@@ -1,12 +1,11 @@
 import React from 'react'
 import Card from '../transactions/Card'
-import PartialLoadingIndicatorStoryHomepage from '../transactions/PartialLoadingIndicatorStoryHomepage'
 import axios from 'axios'
 import _ from 'lodash'
-import {Link} from 'react-router-dom'
 import Auth from '../../lib/Auth'
 import PieChart from 'react-minimal-pie-chart'
 import { Promise } from 'bluebird'
+import { Link } from 'react-router-dom'
 
 import helpers from '../../lib/helpers'
 
@@ -193,42 +192,42 @@ class Dashboard extends React.Component {
                 <PieChart
                   data={[
                     {
-                      title: 'One',
+                      title: this.state.counterparty[0].companyname,
                       value: this.getCounterpartyPercentageOne(),
                       color: '#77966D'
                     },
                     {
-                      title: 'Two',
+                      title: this.state.counterparty[1].companyname,
                       value: this.getCounterpartyPercentageTwo(),
-                      color: '#626D58'
-                    },
-                    {
-                      title: 'Three',
-                      value: this.getCounterpartyPercentageThree(),
                       color: '#544343'
                     },
                     {
-                      title: 'Four',
+                      title: this.state.counterparty[2].companyname,
+                      value: this.getCounterpartyPercentageThree(),
+                      color: '#626D58'
+                    },
+                    {
+                      title: this.state.counterparty[3].companyname,
                       value: this.getCounterpartyPercentageFour(),
                       color: '#297373'
                     },
                     {
-                      title: 'Five',
+                      title: this.state.counterparty[4].companyname,
                       value: this.getCounterpartyPercentageFive(),
                       color: '#E9D758'
                     },
                     {
-                      title: 'Six',
+                      title: this.state.counterparty[5].companyname,
                       value: this.getCounterpartyPercentageSix(),
                       color: '#E38627'
                     },
                     {
-                      title: 'Seven',
+                      title: this.state.counterparty[6].companyname,
                       value: this.getCounterpartyPercentageSeven(),
                       color: '#C13C37'
                     },
                     {
-                      title: 'Eight',
+                      title: this.state.counterparty[7].companyname,
                       value: this.getCounterpartyPercentageEight(),
                       color: '#6A2135'
                     }
@@ -243,18 +242,65 @@ class Dashboard extends React.Component {
                   rounded
                   animate
                 />
+
               </div>
 
 
             </div>
-            <div className="column is-two-thirds companyinfo">
-              <h1 className="title is-3">Welcome back {Auth.getPayload().username}</h1>
-              <h2>Your total revenue is {helpers.getGlobalTotalAmount(this.state.transactions)}</h2>
-              <h2></h2>
+            <div className="column is-two-thirds companyinfohome">
+              <div className="infobox">
+                <h1 className="title is-3">Welcome back {Auth.getPayload().username}</h1>
+                <h2>Your current revenue statement is: </h2>
+                <h1 className="counterpartyrevenue"> {helpers.getGlobalTotalAmount(this.state.transactions)} GBP</h1>
+                <hr/>
+                <h2>Revenoo allows you to keep track of your customers revenue and provides a comprehensive overview of your business finances.</h2>
+                <br/>
+                <h2>Our service is improved thanks to <Link to="https://www.gov.uk/government/organisations/companies-house">Companies House</Link> API.</h2>
+              </div>
+
+              <div className="showsectionhomepage">
+                <h2 className="infotitle">Your top performing customers</h2>
+                <table className="table">
+                  <tbody>
+                    <tr>
+                      <th>Company Name</th>
+                      <th>Revenue</th>
+                    </tr>
+                    <tr>
+                      <td>{this.state.counterparty[0].companyname}</td>
+                      <td>{this.getCounterpartyTotalAmountOne()}</td>
+                    </tr>
+                    <tr>
+                      <td>{this.state.counterparty[1].companyname}</td>
+                      <td>{this.getCounterpartyTotalAmountTwo()}</td>
+                    </tr>
+                    <tr>
+                      <td>{this.state.counterparty[2].companyname}</td>
+                      <td>{this.getCounterpartyTotalAmountThree()}</td>
+                    </tr>
+                    <tr>
+                      <td>{this.state.counterparty[3].companyname}</td>
+                      <td>{this.getCounterpartyTotalAmountFour()}</td>
+                    </tr>
+                    <tr>
+                      <td>{this.state.counterparty[4].companyname}</td>
+                      <td>{this.getCounterpartyTotalAmountFive()}</td>
+                    </tr>
+                    <tr>
+                      <td>{this.state.counterparty[5].companyname}</td>
+                      <td>{this.getCounterpartyTotalAmountSix()}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
             </div>
+
+
           </section>
 
-
+          <hr/>
 
           <div className="tile notification is-dark">
 

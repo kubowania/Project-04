@@ -83,66 +83,6 @@
 },
 {
   "model": "transactions.transaction",
-  "pk": 2,
-  "fields": {
-    "reference": "3453D",
-    "amount": 56.6,
-    "currency": "GBP",
-    "description": "Boxes and packages",
-    "transaction_timestamp": "2019-09-05T13:02:53.085Z",
-    "counterparty": 2
-  }
-},
-{
-  "model": "transactions.transaction",
-  "pk": 3,
-  "fields": {
-    "reference": "3453D",
-    "amount": 56.6,
-    "currency": "GBP",
-    "description": "Boxes and packages",
-    "transaction_timestamp": "2019-09-05T13:15:04.731Z",
-    "counterparty": 2
-  }
-},
-{
-  "model": "transactions.transaction",
-  "pk": 4,
-  "fields": {
-    "reference": "3453D",
-    "amount": -100.0,
-    "currency": "GBP",
-    "description": "Boxes and packages",
-    "transaction_timestamp": "2019-09-05T13:18:46.059Z",
-    "counterparty": 2
-  }
-},
-{
-  "model": "transactions.transaction",
-  "pk": 5,
-  "fields": {
-    "reference": "3453D",
-    "amount": 56.6,
-    "currency": "GBP",
-    "description": "Boxes and packages",
-    "transaction_timestamp": "2019-09-05T14:19:24.298Z",
-    "counterparty": 2
-  }
-},
-{
-  "model": "transactions.transaction",
-  "pk": 6,
-  "fields": {
-    "reference": "3453D",
-    "amount": -100.0,
-    "currency": "GBP",
-    "description": "Boxes and packages",
-    "transaction_timestamp": "2019-09-05T14:19:38.158Z",
-    "counterparty": 2
-  }
-},
-{
-  "model": "transactions.transaction",
   "pk": 7,
   "fields": {
     "reference": "56000DF",
@@ -223,6 +163,222 @@
     "description": "Goods sold at premise",
     "transaction_timestamp": "2019-09-05T14:45:16.638Z",
     "counterparty": 5
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 14,
+  "fields": {
+    "reference": "34",
+    "amount": 3400.0,
+    "currency": "GBP",
+    "description": "Goods sold",
+    "transaction_timestamp": "2019-09-11T18:28:24.654Z",
+    "counterparty": 4
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 15,
+  "fields": {
+    "reference": "345",
+    "amount": 4534.5,
+    "currency": "GBP",
+    "description": "Online sales - Aug-19",
+    "transaction_timestamp": "2019-09-11T18:29:16.602Z",
+    "counterparty": 4
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 16,
+  "fields": {
+    "reference": "Invoice7",
+    "amount": 3400.0,
+    "currency": "GBP",
+    "description": "Online sales - Aug-19",
+    "transaction_timestamp": "2019-09-11T18:30:27.885Z",
+    "counterparty": 5
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 17,
+  "fields": {
+    "reference": "Invoice4",
+    "amount": 1200.0,
+    "currency": "GBP",
+    "description": "Overseas order",
+    "transaction_timestamp": "2019-09-11T18:31:57.749Z",
+    "counterparty": 5
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 18,
+  "fields": {
+    "reference": "Invoice5",
+    "amount": 34500.0,
+    "currency": "GBP",
+    "description": "Meats order-45",
+    "transaction_timestamp": "2019-09-11T18:33:02.300Z",
+    "counterparty": 5
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 20,
+  "fields": {
+    "reference": "345A",
+    "amount": 54000.0,
+    "currency": "GBP",
+    "description": "1yr sponsorship",
+    "transaction_timestamp": "2019-09-11T18:35:11.053Z",
+    "counterparty": 10
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 21,
+  "fields": {
+    "reference": "GH45",
+    "amount": 3200.0,
+    "currency": "GBP",
+    "description": "Wine order 34",
+    "transaction_timestamp": "2019-09-11T18:38:21.367Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 22,
+  "fields": {
+    "reference": "GH46",
+    "amount": 3700.0,
+    "currency": "GBP",
+    "description": "Wine box order 45",
+    "transaction_timestamp": "2019-09-11T18:38:39.888Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 23,
+  "fields": {
+    "reference": "GH48",
+    "amount": 14000.42,
+    "currency": "GBP",
+    "description": "Wine box order 120",
+    "transaction_timestamp": "2019-09-11T18:39:02.965Z",
+    "counterparty": 2
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 24,
+  "fields": {
+    "reference": "4300D",
+    "amount": 3200.0,
+    "currency": "GBP",
+    "description": "marketing leaflets 20",
+    "transaction_timestamp": "2019-09-11T18:39:57.047Z",
+    "counterparty": 6
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 25,
+  "fields": {
+    "reference": "4300D",
+    "amount": 4532.0,
+    "currency": "GBP",
+    "description": "marketing leaflets 22",
+    "transaction_timestamp": "2019-09-11T18:40:31.472Z",
+    "counterparty": 6
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 26,
+  "fields": {
+    "reference": "4320F",
+    "amount": 2780.5,
+    "currency": "GBP",
+    "description": "Leaflet oder 45",
+    "transaction_timestamp": "2019-09-11T18:41:04.339Z",
+    "counterparty": 6
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 27,
+  "fields": {
+    "reference": "4320F",
+    "amount": 2780.5,
+    "currency": "GBP",
+    "description": "Leaflet purchase 47",
+    "transaction_timestamp": "2019-09-11T18:41:14.421Z",
+    "counterparty": 6
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 28,
+  "fields": {
+    "reference": "GH3400",
+    "amount": 6700.2,
+    "currency": "GBP",
+    "description": "Online sales Aug 2019",
+    "transaction_timestamp": "2019-09-11T18:42:13.758Z",
+    "counterparty": 7
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 29,
+  "fields": {
+    "reference": "GH3400",
+    "amount": 14000.2,
+    "currency": "GBP",
+    "description": "Store sales Aug 2019",
+    "transaction_timestamp": "2019-09-11T18:42:33.943Z",
+    "counterparty": 7
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 30,
+  "fields": {
+    "reference": "Invoice4",
+    "amount": 1200.34,
+    "currency": "GBP",
+    "description": "Branded box order 34",
+    "transaction_timestamp": "2019-09-11T18:43:51.456Z",
+    "counterparty": 8
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 31,
+  "fields": {
+    "reference": "Invoice4",
+    "amount": 7002.0,
+    "currency": "GBP",
+    "description": "Branded stationary order 56",
+    "transaction_timestamp": "2019-09-11T18:44:12.734Z",
+    "counterparty": 8
+  }
+},
+{
+  "model": "transactions.transaction",
+  "pk": 32,
+  "fields": {
+    "reference": "Invoice4",
+    "amount": 121.0,
+    "currency": "GBP",
+    "description": "Branded stationary order 34",
+    "transaction_timestamp": "2019-09-11T18:44:24.891Z",
+    "counterparty": 8
   }
 },
 {

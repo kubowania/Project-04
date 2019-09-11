@@ -16,7 +16,7 @@ const Card = ({id, reference, amount, currency, description, transaction_timesta
         <h4 className="content text amount">{amount} {currency}</h4>
       </div>
       <div className="buttonsdiv">
-        <Link to ={`/dashboard/${id}`}><a className="button is-warning homebutton tooltip" data-tooltip="Edit transaction">Edit</a></Link>
+        <Link to ={`/dashboard/${id}`}><a className="button is-warning homebutton tooltip" data-tooltip="View transaction">View</a></Link>
       </div>
     </div>
   )
