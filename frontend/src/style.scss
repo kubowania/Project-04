@@ -306,3 +306,13 @@ section.section.showcounterparty {
     font-weight: bold;
     color: #E38627;
   }
+
+.footer {
+  margin-top: -12px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footertext {
+  font-size: 15px;
+}
