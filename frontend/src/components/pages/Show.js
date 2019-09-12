@@ -258,7 +258,7 @@ class CounterpartyShow extends React.Component {
 
 
             <div className="rowheader">
-              <h2>header</h2>
+              <h2>.</h2>
             </div>
             <div className="rows is-multiline">
               {this.state.counterparty.transactions.map(transaction =>

@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack -p",
-    "serve:backend": "python manage.py runserver 4000",
     "serve:frontend": "webpack-dev-server",
+    "serve:backend": "python manage.py runserver 4000",
     "seed": "python manage.py loaddata movies/fixtures.json"
   },
   "dependencies": {
