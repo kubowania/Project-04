@@ -1,15 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
-import { Link } from 'react-router-dom'
 import 'bulma'
 import { withRouter } from 'react-router-dom'
 import Modal from 'react-modal'
 import Select from 'react-select'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const customStyles = {
   content: {
-    width: '25%',
+    width: '60%',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -25,6 +26,7 @@ class ShowCounterparty extends React.Component {
     super()
     this.state = {
       formData: {
+        note: '',
         transactions: []
       },
       error: '',
@@ -63,10 +65,11 @@ class ShowCounterparty extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    axios.put('/api/counterparties/', this.state.formData, {
+    axios.put(`/api/counterparties/${this.props.match.params.id}/`, this.state.formData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
-      .then(() => this.props.history.push(`/counterparties/${this.props.match.params.id}/`))
+      .then(() => this.props.history.push('/counterparties/'))
+    toast.warning('Customer details changed!')
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
@@ -98,9 +101,13 @@ class ShowCounterparty extends React.Component {
           shouldCloseOnEsc={true}
           shouldCloseOnOverlayClick={true}
         >
-          <h2 ref={subtitle => this.subtitle = subtitle}></h2>
-          <button className="closeModal is-warning" onClick={this.closeModal}>☓</button>
+
           <div className="container">
+            <div className="media-right" onClick={this.closeModal}>
+              <button className="delete popupbutton"></button>
+            </div>
+
+            <br/>
 
             <form onSubmit={this.handleSubmit}>
 
@@ -137,6 +144,7 @@ class ShowCounterparty extends React.Component {
                 isMulti
                 onChange={this.handleSicCodeChange}
               />
+              <br/>
 
               <button className="button is-danger">Submit</button>
             </form>

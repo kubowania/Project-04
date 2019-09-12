@@ -50,7 +50,7 @@ class CounterpartyDetailView(APIView):
 
     def put(self, request, pk):
         counterparty = Counterparty.objects.get(pk=pk)
-        serializer = CounterpartySerializer(counterparty, data=request.data, many=True)
+        serializer = CounterpartySerializer(counterparty, data=request.data)
         if serializer.is_valid():
             serializer.save()
             counterparty = serializer.instance

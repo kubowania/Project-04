@@ -9,7 +9,10 @@ import CreateNewCounterparty from '../transactions/CreateNewCounterparty.js'
 class DebtorsList extends React.Component {
   constructor() {
     super()
-    this.state = { counterparties: [] }
+    this.state = {
+      counterparties: []
+    }
+
   }
 
 
@@ -49,7 +52,7 @@ class DebtorsList extends React.Component {
                     <DebtorCard
                       companyname={counterparty.companyname}
                       companyregistration={counterparty.companyregistration}
-                      image={counterparty.image}/>
+                    />
                   </Link>
                 </div>
               )}

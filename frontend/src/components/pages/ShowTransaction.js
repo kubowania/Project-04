@@ -3,6 +3,7 @@ import axios from 'axios'
 import 'bulma'
 import 'bulma-tooltip'
 import Auth from '../../lib/Auth'
+import 'react-toastify/dist/ReactToastify.css'
 
 import helpers from '../../lib/helpers'
 
@@ -56,7 +57,7 @@ class ShowTransaction extends React.Component {
       <section className="section">
         <div className="container transactionview">
           <h2 className="transactiontitle">Your Transaction in detail</h2>
-          <table className="table">
+          <table className="table transactionviewbox">
             <tbody>
               <tr>
                 <td>Reference</td>

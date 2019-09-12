@@ -6,6 +6,8 @@ import Auth from '../../lib/Auth'
 import PieChart from 'react-minimal-pie-chart'
 import { Promise } from 'bluebird'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import helpers from '../../lib/helpers'
 

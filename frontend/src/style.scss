@@ -271,26 +271,28 @@ section.section.showcounterparty {
   display: flex;
   }
 
+.popupbutton {
+  float: right;
+}
+
   section.section.addcustomer {
     padding-bottom: 0px;
     padding-top: 30px;
   }
 
   .transactionview {
-    min-width: 800px;
+    max-width: 800px;
     margin-top: 40px;
     margin-bottom: 40px;
-    margin-left: 100px;
-    margin-right: 120px;
     padding: 20px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
-  .transactionviewbutton {
-    float: right;
-  }
+.transactionviewbutton {
+  float: right;
+}
 
   .transactiontitle {
     margin-left: 5px;

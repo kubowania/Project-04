@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link , withRouter} from 'react-router-dom'
 import Auth from '../../lib/Auth'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 class Navbar extends React.Component {
 
@@ -17,6 +19,7 @@ class Navbar extends React.Component {
   logout() {
     Auth.removeToken()
     this.props.history.push('/')
+    toast.warning('You have logged out!')
   }
 
 

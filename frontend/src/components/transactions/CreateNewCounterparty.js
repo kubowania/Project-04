@@ -1,15 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
-import { Link } from 'react-router-dom'
 import 'bulma'
 import { withRouter } from 'react-router-dom'
 import Modal from 'react-modal'
 import Select from 'react-select'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const customStyles = {
   content: {
-    width: '25%',
+    width: '60%',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -25,6 +26,7 @@ class CreateNewCounterparty extends React.Component {
     super()
     this.state = {
       formData: {
+        note: 'Edit here.',
         transactions: []
       },
       error: '',
@@ -66,8 +68,9 @@ class CreateNewCounterparty extends React.Component {
     axios.post('/api/counterparties/', this.state.formData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
-      .then(() => this.props.history.push(`/counterparties/${this.props.match.params.id}/`))
-      .catch(err => this.setState({ errors: err.response.data.errors }))
+      .then(() => this.props.history.push('/dashboard/'))
+    toast.warning('New Customer Added!')
+      .catch(err => this.setState({ errors: err.response.data }))
   }
 
   componentDidMount() {
@@ -82,7 +85,7 @@ class CreateNewCounterparty extends React.Component {
   render() {
     console.log(this.state)
     const { selectedOption } = this.state
-
+    console.log((`/counterparties/${this.props.match.params.id}/`))
     return (
       <section className="section addcustomer">
         {Auth.isAuthenticated() && <button className="button is-primary is-warning" onClick={this.openModal}>Add a new customer</button>}
@@ -95,9 +98,13 @@ class CreateNewCounterparty extends React.Component {
           shouldCloseOnEsc={true}
           shouldCloseOnOverlayClick={true}
         >
-          <h2 ref={subtitle => this.subtitle = subtitle}></h2>
-          <button className="closeModal is-warning" onClick={this.closeModal}>☓</button>
           <div className="container">
+
+            <div className="media-right popupbutton" onClick={this.closeModal}>
+              <button className="delete popupbutton"></button>
+            </div>
+
+            <br/>
 
             <form onSubmit={this.handleSubmit}>
 
@@ -134,7 +141,7 @@ class CreateNewCounterparty extends React.Component {
                 isMulti
                 onChange={this.handleSicCodeChange}
               />
-
+              <br/>
               <button className="button is-danger">Submit</button>
             </form>
 

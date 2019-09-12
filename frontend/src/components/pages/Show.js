@@ -1,9 +1,9 @@
 import React from 'react'
 import CounterpartySpecficCard from '../transactions/CounterpartySpecficCard'
 import axios from 'axios'
-import Comment from '../common/Comment'
 import { Promise } from 'bluebird'
 import PartialLoadingIndicatorStory from '../transactions/PartialLoadingIndicatorStory'
+import EditNote from '../transactions/EditNote'
 import { Link } from 'react-router-dom'
 import 'bulma'
 import 'bulma-tooltip'
@@ -26,7 +26,6 @@ class CounterpartyShow extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleSubmitNewTransaction = this.handleSubmitNewTransaction.bind(this)
-    this.handleDeleteComment = this.handleDeleteComment.bind(this)
     this.handleDeleteCounterparty = this.handleDeleteCounterparty.bind(this)
   }
 
@@ -48,14 +47,6 @@ class CounterpartyShow extends React.Component {
       })
   }
 
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.location.pathname !== this.props.location.pathname) {
-      this.setState({ happening: null })
-      this.loadHappening(this.props.match.params.id)
-    }
-  }
-
   handleChange(e) {
     const formData = {...this.state.formData, [e.target.name]: e.target.value}
     this.setState({formData})
@@ -64,7 +55,7 @@ class CounterpartyShow extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    axios.post(`/api/counterparties/${this.props.match.params.id}/comments`, this.state.formData )
+    axios.put(`/api/counterparties/${this.props.match.params.id}`, this.state.formData )
       .then(res => this.setState({
         counterparty: res.data, formData: { content: '' }
       }))
@@ -74,18 +65,14 @@ class CounterpartyShow extends React.Component {
     e.preventDefault()
 
     axios.post('/api/transactions/', this.state.formData )
-      .then(() => {
-        this.props.history.push(`/counterparties/${this.props.match.params.id}/`)
+      .then(res => {
+        const transactions = this.state.counterparty.transactions.concat(res.data)
+        const counterparty = { ...this.state.counterparty, transactions }
+        this.setState({ counterparty })
       })
-      .catch(err => this.setState({ errors: err.response.data.errors }))
+      .catch(err => this.setState({ errors: err.response.data }))
   }
 
-  handleDeleteComment(e) {
-    e.preventDefault()
-
-    axios.delete(`/api/counterparties/${this.props.match.params.id}/comments/${e.target.id}`)
-      .then(res => this.setState({counterparty: res.data}))
-  }
 
   handleDeleteCounterparty(e) {
     e.preventDefault()
@@ -250,7 +237,26 @@ class CounterpartyShow extends React.Component {
             </div>
           </div>
           <div className="column is-two-thirds">
-            <Comment/>
+
+            <article className="media">
+              <div className="media-content">
+                <div className="content">
+                  <p>
+                    <strong>Note:</strong>
+                    {' '}
+                    <small>Created by {Auth.getPayload().username}</small>
+                    <hr/>
+                    {this.state.counterparty.note}
+                  </p>
+                  <span className="title is-2 has-text-centered">
+                  </span>
+                </div>
+              </div>
+              <EditNote/>
+            </article>
+
+
+
             <div className="rowheader">
               <h2>header</h2>
             </div>

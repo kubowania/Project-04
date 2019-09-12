@@ -15,7 +15,7 @@ class CounterpartySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Counterparty
-        fields = ('id', 'companyname', 'companyregistration', 'sicCodes', 'transactions')
+        fields = ('id', 'companyname', 'companyregistration', 'sicCodes', 'note', 'transactions')
 
     def create(self, data):
         transactions_data = data.pop('transactions')
@@ -25,6 +25,17 @@ class CounterpartySerializer(serializers.ModelSerializer):
         for transaction_data in transactions_data:
             Transaction.objects.create(counterparty=counterparty, **transaction_data)
         return counterparty
+
+    def update(self, instance, data):
+        sicCodes_data = data.pop('sicCodes')
+        instance.companyname = data.get('companyname', instance.companyname)
+        instance.companyregistration = data.get('companyregistration', instance.companyregistration)
+        instance.note = data.get('note', instance.note)
+        instance.sicCodes.set(sicCodes_data)
+        # for transaction_data in transactions_data:
+        #     Transaction.objects.create(counterparty=counterparty, **transaction_data)
+        instance.save()
+        return instance
 
 
 class PopulatedTransactionSerializer(TransactionSerializer):

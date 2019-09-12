@@ -26,7 +26,9 @@ class Transaction(models.Model):
 class Counterparty(models.Model):
     companyname = models.CharField(max_length=50)
     companyregistration = models.CharField(max_length=8)
+    note = models.CharField(max_length=200)
     sicCodes = models.ManyToManyField(SicCode, related_name='counterparties')
+
 
 
     def __str__(self):
