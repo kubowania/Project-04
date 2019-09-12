@@ -49,6 +49,12 @@ class CounterpartyShow extends React.Component {
   }
 
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setState({ happening: null })
+      this.loadHappening(this.props.match.params.id)
+    }
+  }
 
   handleChange(e) {
     const formData = {...this.state.formData, [e.target.name]: e.target.value}

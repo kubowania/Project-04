@@ -20,6 +20,13 @@ class DebtorsList extends React.Component {
       .then(res => this.setState({ counterparties: res.data}))
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setState({ happening: null })
+      this.loadHappening(this.props.match.params.id)
+    }
+  }
+
 
   render() {
     return (

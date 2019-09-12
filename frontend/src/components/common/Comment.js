@@ -1,7 +1,7 @@
 import React from 'react'
+import Auth from '../../lib/Auth'
 
-
-const Comment = ({user, createdAt, content, handledelete, _id}) => {
+const Comment = ({user, createdAt, content, handledelete, id}) => {
   return (
     <article className="media">
       <div className="media-content">
@@ -16,9 +16,9 @@ const Comment = ({user, createdAt, content, handledelete, _id}) => {
           </span>
         </div>
       </div>
-      <div className="media-right">
-        <button id={_id} onClick={handledelete} className="delete"></button>
-      </div>
+      {Auth.isCurrentUser(user) && <div className="media-right">
+        <button id={id} onClick={handledelete} className="delete"></button>
+      </div>}
     </article>
   )
 }
