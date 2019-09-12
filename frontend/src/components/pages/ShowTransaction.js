@@ -3,6 +3,7 @@ import axios from 'axios'
 import 'bulma'
 import 'bulma-tooltip'
 import Auth from '../../lib/Auth'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import helpers from '../../lib/helpers'
@@ -45,6 +46,7 @@ class ShowTransaction extends React.Component {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
       .then(() => this.props.history.push('/dashboard/'))
+      toast.error('Your transaction has been deleted!')
   }
 
 
@@ -75,7 +77,7 @@ class ShowTransaction extends React.Component {
               </tr>
             </tbody>
           </table>
-          <button className="button is-danger transactionviewbutton" onClick={this.handleDelete}>Delete this transaction</button>
+          <a className="button is-danger transactionviewbutton" onClick={this.handleDelete}>Delete this transaction</a>
         </div>
 
 

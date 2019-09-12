@@ -281,6 +281,9 @@ section.section.showcounterparty {
   }
 
   .transactionview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-width: 800px;
     margin-top: 40px;
     margin-bottom: 40px;
@@ -291,8 +294,13 @@ section.section.showcounterparty {
   }
 
 .transactionviewbutton {
-  float: right;
 }
+
+.transactionviewbox {
+  display: flex;
+  justify-content: center;
+}
+
 
   .transactiontitle {
     margin-left: 5px;
