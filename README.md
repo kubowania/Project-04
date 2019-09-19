@@ -8,6 +8,15 @@ Readme coming soon.
 
 ![Imgur](https://i.imgur.com/riSZvLg.png)
 
+```javascript
+              {Auth.isAuthenticated() && <div>
+                <h2>Oh no! Are you leaving already?</h2>
+                <br/>
+                <button onClick={this.logout} className="button is-warning ">Logout</button>
+              </div>}
+
+```
+
 ![Imgur](https://i.imgur.com/R5m60rQ.png)
 
 ![Imgur](https://i.imgur.com/9a8SsHe.png?1)
