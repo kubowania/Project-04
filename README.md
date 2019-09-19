@@ -4,6 +4,8 @@ Business Bank Account Dashboard using React and Django
 
 To view the app, please register here: https://revenoo.herokuapp.com
 
+Readme coming soon.
+
 ![Imgur](https://i.imgur.com/riSZvLg.png)
 
 ![Imgur](https://i.imgur.com/R5m60rQ.png)
