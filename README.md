@@ -2,7 +2,7 @@
 Business Bank Account Dashboard using React and Django.
 
 
-This was a final project for General Assemblys Software Engineering course. It was a solitary project that allowed me to build an app relevant to the finance and small business industry that I have interest in. It was a 5 day project. To view the app, please register here: https://revenoo.herokuapp.com
+This was a final project for the General Assembly Software Engineering course. It was a solitary project that allowed me to build an app relevant to the finance and small business industry that I have interest in. It was a 5 day project. To view the app, please register here: https://revenoo.herokuapp.com
 
 Readme coming soon.
 
