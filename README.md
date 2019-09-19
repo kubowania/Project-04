@@ -8,6 +8,8 @@ Readme coming soon.
 
 ![Imgur](https://i.imgur.com/riSZvLg.png)
 
+Once the user has logged in and we have their access Token stored, a few fucntionalities become available to the user. For example more options appear to the user on the navbar, and the login form and message on the right hand side of the homepage will change to service the logged in user more appropriately- ie: with a log out prompt as below:
+
 ```javascript
               {Auth.isAuthenticated() && <div>
                 <h2>Oh no! Are you leaving already?</h2>
