@@ -2,7 +2,13 @@
 Business Bank Account Dashboard using React and Django.
 
 
-This was a final project for the General Assembly Software Engineering course. It was a solitary project that allowed me to build an app relevant to the finance and small business industry that I have interest in. It was a 5 day project. To view the app, please register here: https://revenoo.herokuapp.com
+This was a final project for the General Assembly Software Engineering course. It was a solitary project that allowed me to build an app relevant to the finance and small business industry that I have interest in. It was a 5 day project. 
+
+Revenoo is a B2b revenue tracking dashboard that allowed me to use Python and Django to handle backend structure and Authorisation, with React for the frontend. I enjoyed adding Companies House API to improve my apps service, as well as exercise my previously gained design and UX skills. 
+
+I like to think I have quite a business-minded attitude towards the innovation of products. Ontop of tracking revenue, my next step would be to find like for like business customers based on their SIC Codes, using Companies House API. This feature would make my app not only for tracking revenue, but for increasing revenue and would add stickiness to the product. 
+
+( revenoo.herokuapp.com )
 
 
 
