@@ -39,7 +39,7 @@ Build a React application in 5 days to showcase the following:
 
 
 ## Approach Taken
-I started out my writing out my three Models and figuring out their relationships to each other (Many to Many or otherwise, as well as what they take - string, boolean etc). I settled on transaction, Counterparty and SIC Codes. Once the Models were written and tested that I can make put, get, delete requets on the backend using localhosr:4000, I then started to build out the frontend using React. Lastly I did the Authorisation, which simply meant I wrote code to make certian pages and features not available to the user unless the register to the app.
+I started out my writing out my three Models and figuring out their relationships to each other (Many to Many or otherwise, as well as what they take - string, boolean etc). I settled on transaction, Counterparty and SIC Codes. Once the Models were written and tested that I can make put, get, delete requests on the backend using localhost:4000, I then started to build out the frontend using React. Lastly I did the Authorisation, which simply meant I wrote code to make certain pages and features not available to the user unless the register to the app.
 
 
 ## Wins and Blockers
