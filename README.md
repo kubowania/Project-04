@@ -70,6 +70,21 @@ Once the user has logged in and we have their access Token stored, a few functio
 
 ![Imgur](https://i.imgur.com/R5m60rQ.png)
 
+### Featured piece of code no.2
+
+This allows us to search for a transaction via its reference, amount, time or description.
+
+```javascript
+  filterTransactions() {
+    const re = new RegExp(this.state.searchTerm, 'i')
+
+    const filterTransactions = _.filter(this.state.transactions, transaction => {
+      return re.test(transaction.reference) || re.test(transaction.amount) || re.test(transaction.transaction_timestamp) || re.test(transaction.description)
+    })
+    return filterTransactions
+  }
+```
+
 ![Imgur](https://i.imgur.com/9a8SsHe.png?1)
 
 ![Imgur](https://i.imgur.com/rnvHWcA.png)
